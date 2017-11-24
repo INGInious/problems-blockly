@@ -12,6 +12,8 @@ from inginious.common.tasks_problems import CodeProblem
 from inginious.frontend.task_problems import DisplayableCodeProblem
 from inginious.frontend.tasks_code_boxes import DisplayableBox
 
+__version__ = "0.1.dev0"
+
 PATH_TO_PLUGIN = os.path.abspath(os.path.dirname(__file__))
 
 
