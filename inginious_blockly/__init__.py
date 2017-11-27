@@ -24,7 +24,7 @@ class StaticMockPage(object):
             raise web.notfound()
 
         try:
-            with open(os.path.join(PATH_TO_PLUGIN, "static", path), 'r') as file:
+            with open(os.path.join(PATH_TO_PLUGIN, "static", path), 'rb') as file:
                 return file.read()
         except:
             raise web.notfound()
