@@ -7,7 +7,6 @@
 function studio_init_template_blockly(well, pid, problem) {
     var row, new_row_content;
     var val = "";
-    $('#language-' + pid, well).val("language" in problem ? problem.language : "");
 
     var toolboxEditor = registerCodeEditor($('#toolbox-' + pid)[0], 'xml', 10);
     toolboxEditor.setValue("toolbox" in problem ? problem.toolbox : "<xml></xml>");
@@ -180,7 +179,7 @@ function studio_create_blockly_js_files(pid, filename)
         $("#file-" + pid + "-" + index).val(filename);
         var script = $("<script>");
         script.prop("charset", "utf-8");
-        script.prop("src", "/course/" + course + "/" + taskid + "/" + filename);
+        script.prop("src", $("#switch").attr("href") + "/" + filename);
         $("#collapse_" + pid).append(script);
     } else {
         $("#file-" + pid + "-" + index).val("");
@@ -202,7 +201,7 @@ function studio_create_blockly_blocks_files(pid, filename)
         $("#file-" + pid + "-" + index).val(filename);
         var script = $("<script>");
         script.prop("charset", "utf-8");
-        script.prop("src", "/course/" + course + "/" + taskid + "/" + filename);
+        script.prop("src", $("#switch").attr("href") + "/" + filename);
         $("#collapse_" + pid).append(script);
     } else {
         $("#file-" + pid + "-" + index).val("");

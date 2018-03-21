@@ -7,10 +7,8 @@ import os
 import web
 import json
 
-from inginious.common.tasks_code_boxes import MultilineBox
-from inginious.common.tasks_problems import CodeProblem
-from inginious.frontend.task_problems import DisplayableCodeProblem
-from inginious.frontend.tasks_code_boxes import DisplayableBox
+from inginious.common.tasks_problems import Problem
+from inginious.frontend.task_problems import DisplayableProblem
 
 __version__ = "0.1.dev0"
 
@@ -33,26 +31,25 @@ class StaticMockPage(object):
         return self.GET(path)
 
 
-class BlocklyProblem(CodeProblem):
+class BlocklyProblem(Problem):
     """
     Blockly problem
     """
     def __init__(self, task, problemid, content, translations=None):
         super(BlocklyProblem, self).__init__(task, problemid, content, translations)
-        self._box_types.update({"blockly": BlocklyBox})
-        self._boxes = [self._create_box("", {"type": "blockly",
-                                             "language": content["language"],
-                                             "optional": content.get("optional", False),
-                                             "toolbox": content.get("toolbox", ""),
-                                             "files": content.get("files", []),
-                                             "blocks_files": content.get("blocks_files", []),
-                                             "options": content.get("options", []),
-                                             "workspace": content.get("workspace", ""),
-                                            })]
+        self._toolbox = content.get("toolbox", "<xml></xml>")
+        self._workspace = content.get("workspace", "")
+        self._options = content.get("options", [])
+        self._files = content.get("files", [])
+        self._blocks_files = content.get("blocks_files", [])
 
     @classmethod
     def get_type(self):
         return "blockly"
+
+    def input_type(self):
+        """ Indicates if problem input type """
+        return str
 
     @classmethod
     def parse_problem(cls, problem_content):
@@ -96,49 +93,26 @@ class BlocklyProblem(CodeProblem):
 
     @classmethod
     def get_text_fields(cls):
-        return CodeProblem.get_text_fields()
+        return Problem.get_text_fields()
+
+    def check_answer(self, _, __):
+        return None, None, None, 0
+
+    def input_is_consistent(self, task_input, default_allowed_extension, default_max_size):
+        if not self.get_id() in task_input:
+            return False
+
+        # do not allow empty answers
+        if len(task_input[self.get_id()]) == 0:
+                return False
+        return True
 
 
-class BlocklyBox(MultilineBox):
-    """
-        Blockly box.
-    """
-    def get_type(self):
-        return "blockly"
+class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
 
-    def __init__(self, problem, boxid, boxData):
-        super(BlocklyBox, self).__init__(problem, boxid, boxData)
-        if "toolbox" in boxData:
-            self._toolbox = boxData["toolbox"]
-        else:
-            self._toolbox = "<xml></xml>"
-        if "workspace" in boxData:
-            self._workspace = boxData["workspace"]
-        if "options" in boxData:
-            self._options = boxData["options"]
-        if "files" in boxData:
-            self._files = boxData["files"]
-        if "blocks_files" in boxData:
-            self._blocks_files = boxData["blocks_files"]
-
-    def input_is_consistent(self, taskInput, default_allowed_extension, default_max_size):
-        return MultilineBox.input_is_consistent(self, taskInput, default_allowed_extension, default_max_size)
-
-
-class DisplayableBlocklyProblem(BlocklyProblem, DisplayableCodeProblem):
     """ A displayable blockly problem """
     def __init__(self, task, problemid, content, translations=None):
         super(DisplayableBlocklyProblem, self).__init__(task, problemid, content, translations)
-        self._box_types.update({"blockly": DisplayableBlocklyBox})
-        self._boxes = [self._create_box("", {"type": "blockly",
-                                             "language": content["language"],
-                                             "optional": content.get("optional", False),
-                                             "toolbox": content.get("toolbox", ""),
-                                             "files": content.get("files", []),
-                                             "blocks_files": content.get("blocks_files", []),
-                                             "options": content.get("options", []),
-                                             "workspace": content.get("workspace", ""),
-                                             })]
 
     @classmethod
     def show_editbox(self, template_helper, key):
@@ -153,31 +127,23 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableCodeProblem):
     def get_type_name(self, gettext):
         return gettext("blockly")
 
-
-class DisplayableBlocklyBox(BlocklyBox, DisplayableBox):
-    """ A displayable blockly box """
-    def __init__(self, problem, boxid, boxData):
-        super(DisplayableBlocklyBox, self).__init__(problem, boxid, boxData)
-
     def adapt_input_for_backend(self, input_data):
         """ Adapt the input from web.py for the inginious.backend """
         return input_data
 
-    @classmethod
-    def get_renderer(cls, template_helper):
-        """ Get the renderer for this class problem """
-        return template_helper.get_custom_renderer(os.path.join(PATH_TO_PLUGIN, "templates"), False)
-
-    def show(self, template_helper, language):
+    def show_input(self, template_helper, language, seed):
         """ Show BlocklyBox """
-        task = self.get_problem().get_task()
+        task = self.get_task()
         courseid = task.get_course_id()
         taskid = task.get_id()
         filenames = []
         for filename in self._files + self._blocks_files:
             filenames.append(str(taskid) + "/" + str(filename))
         toolbox = self._toolbox
-        return str(DisplayableBlocklyBox.get_renderer(template_helper).box_blockly(courseid, taskid, self.get_complete_id(), self.get_problem().get_name(), self._language, toolbox, filenames, self._workspace, json.dumps(self._options)))
+        return str(DisplayableBlocklyProblem.get_renderer(template_helper).box_blockly(courseid, taskid, self.get_id(),
+                                                                                self.get_name(), toolbox,
+                                                                                filenames, self._workspace,
+                                                                                json.dumps(self._options)))
 
 
 def init(plugin_manager, course_factory, client, plugin_config):
