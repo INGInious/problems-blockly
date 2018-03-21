@@ -3,11 +3,9 @@
 
 from setuptools import setup, find_packages
 
-import inginious_blockly
-
 setup(
     name="inginious-problems-blockly",
-    version=inginious_blockly.__version__,
+    version="0.1.dev0",
     description="Plugin to add Blockly problem type",
     packages=find_packages(),
     install_requires=["inginious>=0.5.dev0"],

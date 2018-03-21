@@ -10,4 +10,4 @@ INGInious plugin for adding Blockly problems
 In your ``configuration.yaml`` file, add the following plugin entry:
 
     plugins:
-      - plugin_module: "inginious_blockly"
+      - plugin_module: "inginious-problems-blockly"
