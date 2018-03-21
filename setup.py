@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 import inginious_blockly
 
 setup(
-    name="inginious_blockly",
+    name="inginious-problems-blockly",
     version=inginious_blockly.__version__,
     description="Plugin to add Blockly problem type",
     packages=find_packages(),
