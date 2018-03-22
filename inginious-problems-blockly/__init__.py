@@ -119,6 +119,10 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         return DisplayableBlocklyProblem.get_renderer(template_helper).editbox_blockly(key)
 
     @classmethod
+    def show_editbox_templates(cls, template_helper, key):
+        return DisplayableBlocklyProblem.get_renderer(template_helper).editbox_blockly_templates(key)
+
+    @classmethod
     def get_renderer(cls, template_helper):
         """ Get the renderer for this class problem """
         return template_helper.get_custom_renderer(os.path.join(PATH_TO_PLUGIN, "templates"), False)
