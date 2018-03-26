@@ -1,4 +1,4 @@
 include LICENSE
 include README.md
-recursive-include inginious_blockly/static *
-recursive-include inginious_blockly/templates *
+recursive-include inginious-problems-blockly/static *
+recursive-include inginious-problems-blockly/templates *
