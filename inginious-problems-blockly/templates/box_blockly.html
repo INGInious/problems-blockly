@@ -111,7 +111,7 @@ $#
 
 $if filenames is not None:
     $for filename in filenames:
-        <script src="$filename" type="text/javascript" charset="utf-8"></script>
+        <script src="$get_homepath()/course/$courseid/$taskid/$filename" type="text/javascript" charset="utf-8"></script>
 
 <script type="text/javascript">
 var blocklyToolbox = `$:toolbox`;

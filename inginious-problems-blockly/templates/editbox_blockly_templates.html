@@ -1,0 +1,127 @@
+$def with (key)
+
+$#
+$# This file is part of INGInious. See the LICENSE and the COPYRIGHTS files for
+$# more information about the licensing of this file.
+$#
+
+    <div id="subproblem_$(key)_visual" style="display:none;">
+        <div class="form-group">
+            <label for="visualPosition-PID" class="col-sm-2 control-label">Position</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="visualPosition-PID" name="problem[PID][options][visual][position]">
+                    <option value="left">left</option>
+                    <option value="right">right</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div id="subproblem_$(key)_grid" style="display:none;">
+        <div class="form-group">
+            <label for="gridSpacing-PID" class="col-sm-2 control-label">Spacing</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="gridSpacing-PID" name="problem[PID][options][grid][spacing]" placeholder="Default is 20"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="gridLength-PID" class="col-sm-2 control-label">Length</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="gridLength-PID" name="problem[PID][options][grid][length]" placeholder="Default is 3"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="gridColour-PID" class="col-sm-2 control-label">Colour</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="gridColour-PID" name="problem[PID][options][grid][colour]" placeholder="Default is #ccc"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="gridSnap-PID" class="col-sm-2 control-label">Snap</label>
+            <div class="col-sm-10">
+                <div class="checkbox"><label>
+                    <input type="checkbox" id="gridSnap-PID" name="problem[PID][options][grid][snap]"/>&nbsp;
+                </label></div>
+            </div>
+        </div>
+    </div>
+    <div id="subproblem_$(key)_zoom" style="display:none;">
+        <div class="form-group">
+            <label for="zoomControls-PID" class="col-sm-2 control-label">Controls</label>
+            <div class="col-sm-10">
+                <div class="checkbox"><label>
+                    <input type="checkbox" id="zoomControls-PID" name="problem[PID][options][zoom][controls]"/>&nbsp;
+                </label></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zoomWheel-PID" class="col-sm-2 control-label">Wheel</label>
+            <div class="col-sm-10">
+                <div class="checkbox"><label>
+                    <input type="checkbox" id="zoomWheel-PID" name="problem[PID][options][zoom][wheel]"/>&nbsp;
+                </label></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zoomStartScale-PID" class="col-sm-2 control-label">Start scale</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="zoomStartScale-PID" name="problem[PID][options][zoom][startScale]" placeholder="Default is 1"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zoomMaxScale-PID" class="col-sm-2 control-label">Max scale</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="zoomMaxScale-PID" name="problem[PID][options][zoom][maxScale]" placeholder="Default is 3"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zoomMinScale-PID" class="col-sm-2 control-label">Min scale</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="zoomMinScale-PID" name="problem[PID][options][zoom][minScale]" placeholder="Default is 0.3"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="zoomScaleSpeed-PID" class="col-sm-2 control-label">Scale speed</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="zoomScaleSpeed-PID" name="problem[PID][options][zoom][scaleSpeed]" placeholder="Default is 1.2"/>
+            </div>
+        </div>
+    </div>
+    <div id="subproblem_$(key)_files" style="display:none;">
+        <div class="form-group">
+            <label for="file-PID-INDEX" class="col-sm-2 control-label">File name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="file-PID-INDEX" name="problem[PID][files][INDEX]" placeholder="Name of the file"/>
+                </div>
+        </div>
+    </div>
+    <div id="subproblem_blocks_files" style="display:none;">
+        <div class="form-group">
+            <label for="file-PID-INDEX" class="col-sm-2 control-label">File name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="file-PID-INDEX" name="problem[PID][blocks_files][INDEX]" placeholder="Name of the file"/>
+                </div>
+        </div>
+    </div>
+    <div id="subproblem_$(key)_factory">
+        <div id="blocklyFactory"></div>
+
+        <!-- Blockly official JavaScript -->
+        <script src="$get_homepath()/plugins/blockly/static/blockly/blockly_compressed.js" type="text/javascript" charset="utf-8"></script>
+        <script src="$get_homepath()/plugins/blockly/static/blockly/blocks_compressed.js" type="text/javascript" charset="utf-8"></script>
+        <script src="$get_homepath()/plugins/blockly/static/blockly/javascript_compressed.js" type="text/javascript" charset="utf-8"></script>
+        <script src="$get_homepath()/plugins/blockly/static/blockly/python_compressed.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Blockly French Translation -->
+        <script src="$get_homepath()/plugins/blockly/static/blockly/msg/js/fr.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Blockly Factory js -->
+        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/bootstrapelement.js" charset="utf-8"></script>
+        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/factorycontroller.js" charset="utf-8"></script>
+        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/factory.js" charset="utf-8"></script>
+        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/factoryview.js" charset="utf-8"></script>
+        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/preview.js" charset="utf-8"></script>
+        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/toolboxfactory.js" charset="utf-8"></script>
+        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/toolbox.js" charset="utf-8"></script>
+        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/workspacefactory.js" charset="utf-8"></script>
+
+    </div>

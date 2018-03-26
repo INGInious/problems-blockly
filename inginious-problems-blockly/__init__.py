@@ -142,7 +142,7 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         taskid = task.get_id()
         filenames = []
         for filename in self._files + self._blocks_files:
-            filenames.append(str(taskid) + "/" + str(filename))
+            filenames.append(str(filename))
         toolbox = self._toolbox
         return str(DisplayableBlocklyProblem.get_renderer(template_helper).box_blockly(courseid, taskid, self.get_id(),
                                                                                 self.get_name(), toolbox,
