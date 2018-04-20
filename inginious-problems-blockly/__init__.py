@@ -156,4 +156,6 @@ def init(plugin_manager, course_factory, client, plugin_config):
     plugin_manager.add_hook("css", lambda: "/plugins/blockly/static/css/blockly.css")
     plugin_manager.add_hook("javascript_header", lambda: "/plugins/blockly/static/studio_blockly.js")
     plugin_manager.add_hook("javascript_header", lambda: "/plugins/blockly/static/task_blockly.js")
+    plugin_manager.add_hook("javascript_header",lambda: "/plugins/blockly/static/default-data/jquery.js")
+    plugin_manager.add_hook("javascript_header",lambda: "/plugins/blockly/static/default-data/load.js")
     course_factory.get_task_factory().add_problem_type(DisplayableBlocklyProblem)
