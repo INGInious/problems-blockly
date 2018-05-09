@@ -73,8 +73,17 @@ function studio_init_template_blockly(well, pid, problem) {
         gridOptions = options.grid;
         $("#grid-" + pid).prop('checked', true);
     } else {
-        gridOptions = {};
-        $("#grid-" + pid).prop('checked', false);
+        gridOptions = {
+            "spacing" : "20",
+            "length" : "3",
+            "colour" : "#ccc",
+            "snap" : true
+        };
+        $("#grid-" + pid).prop('checked', true);
+        row = $("#subproblem_blockly_grid").html();
+        new_row_content = row.replace(/PID/g, pid);
+        $('#grid-' + pid).parent().parent().parent().append(new_row_content);
+        options.grid = gridOptions;
     }
 
     $("#gridSpacing-" + pid).val("spacing" in gridOptions ? gridOptions.spacing : "20");
@@ -87,10 +96,15 @@ function studio_init_template_blockly(well, pid, problem) {
             var row = $("#subproblem_blockly_grid").html();
             var new_row_content = row.replace(/PID/g, pid);
             $(this).parent().parent().parent().append(new_row_content);
+            $("#gridSpacing-" + pid).val("spacing" in gridOptions ? gridOptions.spacing : "20");
+            $("#gridLength-" + pid).val("length" in gridOptions ? gridOptions.length : "3");
+            $("#gridColour-" + pid).val("colour" in gridOptions ? gridOptions.colour : "#ccc");
+            $("#gridSnap-" + pid).prop('checked', "snap" in gridOptions ? gridOptions.snap : true);
         } else {
             $(this).parent().parent().parent().html($(this).parent().parent().detach());
         }
     });
+
 
     var zoomOptions;
     if ("zoom" in options) {
@@ -100,8 +114,19 @@ function studio_init_template_blockly(well, pid, problem) {
         $("#zoom-" + pid).prop('checked', true);
         zoomOptions = options.zoom;
     } else {
-        zoomOptions = {};
-        $("#zoom-" + pid).prop('checked', false);
+        zoomOptions = {
+            "controls" : true,
+            "wheel" : false,
+            "startScale" : "1.0",
+            "maxScale" : "3.0",
+            "minScale" : "0.3",
+            "scaleSpeed" : "1.2"
+        };
+        var row = $("#subproblem_blockly_zoom").html();
+        var new_row_content = row.replace(/PID/g, pid);
+        $('#zoom-' + pid).parent().parent().parent().append(new_row_content);
+        $("#zoom-" + pid).prop('checked', true);
+        options.zoom = zoomOptions
     }
 
     $("#zoomControls-" + pid).prop('checked', "controls" in zoomOptions ? zoomOptions.controls : true);
@@ -116,10 +141,17 @@ function studio_init_template_blockly(well, pid, problem) {
             var row = $("#subproblem_blockly_zoom").html();
             var new_row_content = row.replace(/PID/g, pid);
             $(this).parent().parent().parent().append(new_row_content);
+            $("#zoomControls-" + pid).prop('checked', "controls" in zoomOptions ? zoomOptions.controls : true);
+            $("#zoomWheel-" + pid).prop('checked', "wheel" in zoomOptions ? zoomOptions.wheel : false);
+            $("#zoomStartScale-" + pid).val("startScale" in zoomOptions ? zoomOptions.startScale : "1.0");
+            $("#zoomMaxScale-" + pid).val("maxScale" in zoomOptions ? zoomOptions.maxScale :"3.0");
+            $("#zoomMinScale-" + pid).val("minScale" in zoomOptions ? zoomOptions.minScale : "0.3");
+            $("#zoomScaleSpeed-" + pid).val("scaleSpeed" in zoomOptions ? zoomOptions.scaleSpeed : "1.2");
         } else {
             $(this).parent().parent().parent().html($(this).parent().parent().detach());
         }
     });
+
 
     if ("files" in problem) {
         jQuery.each(problem["files"], function(index, elem)

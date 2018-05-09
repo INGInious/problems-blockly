@@ -1,0 +1,36 @@
+# MAC
+*.DS_STORE
+
+build/
+dist/
+inginious_problems_blockly.egg-info/
+
+
+# Windows
+Thumbs.db
+
+# Tex
+*.aux
+*.log
+*.synctex.gz
+*.toc
+
+# Bibtex
+*.bbl
+*.fls
+
+# C
+*.out
+*.o
+*.cbp
+*.layout
+
+# General
+*.dvi
+*.temp
+*.make
+*.mk
+*.ps
+
+sender
+receiver
