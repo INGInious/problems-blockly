@@ -1,0 +1,25 @@
+About INGInious-problems-blockly
+================================
+
+Origin
+------
+
+This pluggin is inspired by `this google repository <https://github.com/google/blockly>`_
+
+
+Now we show each folder is origin. A 'x' if it's hand made.
+
++----------------------------------------+----------------------------------------+
+| inginious-problems-blockly             |                  from repo             |
++============+===========================+========================================+
+|          templates/                    |                    x                   |
++----------------------------------------+----------------------------------------+
+|      static/blockly	sauf blockly.js  |              google/blockly            |
++----------------------------------------+----------------------------------------+
+|      static/blocklyfactory             |     fthuin/workspacefactory_bootstrap  |
++----------------------------------------+----------------------------------------+
+| static/JS-interpreter/                 | google/blockly/demos/                  |
+| acorn_interpreter.js                   | interpreter/acorn_interpreter.js       |
++----------------------------------------+----------------------------------------+
+|              static/css                |                    x                   |
++----------------------------------------+----------------------------------------+

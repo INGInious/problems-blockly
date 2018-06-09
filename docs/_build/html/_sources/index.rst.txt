@@ -9,6 +9,7 @@ Inginious-problems-blockly's documentation
 .. toctree::
    :maxdepth: 2
    
+   about_pluggin
    changelog
 
 Indices and tables
