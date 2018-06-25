@@ -7,14 +7,16 @@ Origin
 This pluggin is inspired by `this google repository <https://github.com/google/blockly>`_
 
 
-Now we show each folder is origin. A 'x' if it's hand made.
+- The ``blockly`` folder is a sub module from the google repository.
+- The ``docs`` folder contains all the docs you read.
+- The ``inginious-problems-blockly`` folder is more complicated. We will use a tabular to describe the origin of all files. A 'x' if it's hand made.
 
 +----------------------------------------+----------------------------------------+
 | inginious-problems-blockly             |                  from repo             |
 +============+===========================+========================================+
 |          templates/                    |                    x                   |
 +----------------------------------------+----------------------------------------+
-|      static/blockly	sauf blockly.js  |              google/blockly            |
+|      static/blockly except blockly.js  |              google/blockly            |
 +----------------------------------------+----------------------------------------+
 |      static/blocklyfactory             |     fthuin/workspacefactory_bootstrap  |
 +----------------------------------------+----------------------------------------+
