@@ -14,13 +14,83 @@ function studio_init_template_blockly(well, pid, problem) {
     var workspaceEditor = registerCodeEditor($('#workspace-' + pid)[0], 'xml', 10);
     workspaceEditor.setValue("workspace" in problem ? problem.workspace : "<xml></xml>");
 
-    var options = "options" in problem ? problem.options : {};
+    var options = "options" in problem ? problem.options : {
+        "collapse" : false,
+        "comments" : false,
+        "disable" : false,
+        "maxBlocks" : "Infinity",
+        "trashcan" : false,
+        "horizontalLayout" : false,
+        "toolboxPosition" : "start",
+        "css" : true,
+        "rtl" : false,
+        "scrollbars" : true,
+        "media" : "plugins/blockly/static/blockly/media/",
+        "oneBasedIndex" : true,
+        "readOnly" : false,
+        "grid" : {
+            "spacing" : "20",
+            "length" : "3",
+            "colour" : "#ccc",
+            "snap" : true
+        } ,
+        "zoom" : {
+            "controls" : true,
+            "wheel" : false,
+            "startScale" : "1.0",
+            "maxScale" : "3.0",
+            "minScale" : "0.3",
+            "scaleSpeed" : "1.2"
+        }
+    };
 
+    workspace_options(pid,options);
+
+
+    if ("files" in problem) {
+        jQuery.each(problem["files"], function(index, elem)
+        {
+            studio_create_blockly_js_files(pid, elem);
+        });
+    }
+    if ("blocks_files" in problem) {
+        jQuery.each(problem["blocks_files"], function(index, elem)
+        {
+            studio_create_blockly_blocks_files(pid, elem);
+        });
+    }
+
+    var factoryController;
+    $('#blockFactoryModal').on('shown.bs.modal', function() {
+        // FIXME Next line is a fix, please monitor https://github.com/google/blockly/issues/56
+        $(document).off('focusin.modal');
+
+        $("#blockFactoryModalBody").html($("#subproblem_blockly_factory").detach());
+
+        var basicToolbox = Toolbox.FULL;
+        var toolbox = $("#toolbox-" + pid).text();
+        var workspaceBlocks = $("#workspace-" + pid).text();
+
+        factoryController = new FactoryController('blocklyFactory', basicToolbox, workspaceBlocks, problem["options"], pid);
+        var preview = new Preview(factoryController);
+        factoryController.setPreview(preview);
+        factoryController.injectWorkspaces();
+    });
+
+    $('#blockFactoryModal').on('hidden.bs.modal', function() {
+        // If you want this behavior to be BEFORE the visual part, use hide.bs.modal, if after use hidden.bs.modal
+        // When the modal is closed, the workspace (from the initial page must be updated)
+        factoryController.dispose();
+    });
+
+}
+
+function workspace_options(pid, options){
     $("#collapse-" + pid).prop('checked', "collapse" in options ? options.collapse : false);
     $("#comments-" + pid).prop('checked', "comments" in options ? options.comments : false);
     $("#disable-" + pid).prop('checked', "disable" in options ? options.disable : false);
     $("#maxBlocks-" + pid).val("maxBlocks" in options ? options.maxBlocks : "Infinity");
-    $("#trashcan-" + pid).prop('checked', "trashcan" in options ? options.trashcan : true);
+    $("#trashcan-" + pid).prop('checked', "trashcan" in options ? options.trashcan : false);
     $("#horizontalLayout-" + pid).prop('checked', "horizontalLayout" in options ? options.horizontalLayout : false);
 
     if ("toolboxPosition" in options && (options.toolboxPosition === "start" || options.toolboxPosition === "end")) {
@@ -29,12 +99,12 @@ function studio_init_template_blockly(well, pid, problem) {
         $("#toolboxPosition-" + pid).val("start");
     }
 
-    $("#css-" + pid).prop('checked', "css" in options ? options.css : true);
+    $("#css-" + pid).prop('checked', "css" in options ? options.css : false);
     $("#rtl-" + pid).prop('checked', "rtl" in options ? options.rtl : false);
-    $("#scrollbars-" + pid).prop('checked', "scrollbars" in options ? options.scrollbars : true);
-    $("#sounds-" + pid).prop('checked', "sounds" in options ? options.sounds : true);
+    $("#scrollbars-" + pid).prop('checked', "scrollbars" in options ? options.scrollbars : false);
+    $("#sounds-" + pid).prop('checked', "sounds" in options ? options.sounds : false);
     $("#media-" + pid).val("media" in options ? options.media : "plugins/blockly/static/blockly/media/");
-    $("#oneBasedIndex-" + pid).prop('checked', "oneBasedIndex" in options ? options.oneBasedIndex : true);
+    $("#oneBasedIndex-" + pid).prop('checked', "oneBasedIndex" in options ? options.oneBasedIndex : false);
     $("#readOnly-" + pid).prop('checked', "readOnly" in options ? options.readOnly : false);
 
     var visualOptions;
@@ -79,17 +149,14 @@ function studio_init_template_blockly(well, pid, problem) {
             "colour" : "#ccc",
             "snap" : true
         };
-        $("#grid-" + pid).prop('checked', true);
-        row = $("#subproblem_blockly_grid").html();
-        new_row_content = row.replace(/PID/g, pid);
-        $('#grid-' + pid).parent().parent().parent().append(new_row_content);
+        $("#grid-" + pid).prop('checked', false);
         options.grid = gridOptions;
     }
 
     $("#gridSpacing-" + pid).val("spacing" in gridOptions ? gridOptions.spacing : "20");
     $("#gridLength-" + pid).val("length" in gridOptions ? gridOptions.length : "3");
     $("#gridColour-" + pid).val("colour" in gridOptions ? gridOptions.colour : "#ccc");
-    $("#gridSnap-" + pid).prop('checked', "snap" in gridOptions ? gridOptions.snap : true);
+    $("#gridSnap-" + pid).prop('checked', "snap" in gridOptions ? gridOptions.snap : false);
 
     $('#grid-' + pid).change(function() {
         if ($(this).is(":checked")) {
@@ -99,7 +166,7 @@ function studio_init_template_blockly(well, pid, problem) {
             $("#gridSpacing-" + pid).val("spacing" in gridOptions ? gridOptions.spacing : "20");
             $("#gridLength-" + pid).val("length" in gridOptions ? gridOptions.length : "3");
             $("#gridColour-" + pid).val("colour" in gridOptions ? gridOptions.colour : "#ccc");
-            $("#gridSnap-" + pid).prop('checked', "snap" in gridOptions ? gridOptions.snap : true);
+            $("#gridSnap-" + pid).prop('checked', "snap" in gridOptions ? gridOptions.snap : false);
         } else {
             $(this).parent().parent().parent().html($(this).parent().parent().detach());
         }
@@ -122,14 +189,11 @@ function studio_init_template_blockly(well, pid, problem) {
             "minScale" : "0.3",
             "scaleSpeed" : "1.2"
         };
-        var row = $("#subproblem_blockly_zoom").html();
-        var new_row_content = row.replace(/PID/g, pid);
-        $('#zoom-' + pid).parent().parent().parent().append(new_row_content);
-        $("#zoom-" + pid).prop('checked', true);
+        $("#zoom-" + pid).prop('checked', false);
         options.zoom = zoomOptions
     }
 
-    $("#zoomControls-" + pid).prop('checked', "controls" in zoomOptions ? zoomOptions.controls : true);
+    $("#zoomControls-" + pid).prop('checked', "controls" in zoomOptions ? zoomOptions.controls : false);
     $("#zoomWheel-" + pid).prop('checked', "wheel" in zoomOptions ? zoomOptions.wheel : false);
     $("#zoomStartScale-" + pid).val("startScale" in zoomOptions ? zoomOptions.startScale : "1.0");
     $("#zoomMaxScale-" + pid).val("maxScale" in zoomOptions ? zoomOptions.maxScale :"3.0");
@@ -141,7 +205,7 @@ function studio_init_template_blockly(well, pid, problem) {
             var row = $("#subproblem_blockly_zoom").html();
             var new_row_content = row.replace(/PID/g, pid);
             $(this).parent().parent().parent().append(new_row_content);
-            $("#zoomControls-" + pid).prop('checked', "controls" in zoomOptions ? zoomOptions.controls : true);
+            $("#zoomControls-" + pid).prop('checked', "controls" in zoomOptions ? zoomOptions.controls : false);
             $("#zoomWheel-" + pid).prop('checked', "wheel" in zoomOptions ? zoomOptions.wheel : false);
             $("#zoomStartScale-" + pid).val("startScale" in zoomOptions ? zoomOptions.startScale : "1.0");
             $("#zoomMaxScale-" + pid).val("maxScale" in zoomOptions ? zoomOptions.maxScale :"3.0");
@@ -151,44 +215,6 @@ function studio_init_template_blockly(well, pid, problem) {
             $(this).parent().parent().parent().html($(this).parent().parent().detach());
         }
     });
-
-
-    if ("files" in problem) {
-        jQuery.each(problem["files"], function(index, elem)
-        {
-            studio_create_blockly_js_files(pid, elem);
-        });
-    }
-    if ("blocks_files" in problem) {
-        jQuery.each(problem["blocks_files"], function(index, elem)
-        {
-            studio_create_blockly_blocks_files(pid, elem);
-        });
-    }
-
-    var factoryController;
-    $('#blockFactoryModal').on('shown.bs.modal', function() {
-        // FIXME Next line is a fix, please monitor https://github.com/google/blockly/issues/56
-        $(document).off('focusin.modal');
-
-        $("#blockFactoryModalBody").html($("#subproblem_blockly_factory").detach());
-
-        var basicToolbox = Toolbox.FULL;
-        var toolbox = $("#toolbox-" + pid).text();
-        var workspaceBlocks = $("#workspace-" + pid).text();
-
-        factoryController = new FactoryController('blocklyFactory', basicToolbox, workspaceBlocks, problem["options"], pid);
-        var preview = new Preview(factoryController);
-        factoryController.setPreview(preview);
-        factoryController.injectWorkspaces();
-    });
-
-    $('#blockFactoryModal').on('hidden.bs.modal', function() {
-        // If you want this behavior to be BEFORE the visual part, use hide.bs.modal, if after use hidden.bs.modal
-        // When the modal is closed, the workspace (from the initial page must be updated)
-        factoryController.dispose();
-    });
-
 }
 
 /**
