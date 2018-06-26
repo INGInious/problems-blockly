@@ -1,15 +1,12 @@
 ChangeLog
 =========
 
-First
------
-file track from
-static/blockly	eccept blockly.js google/blockly
+2018 Apr 14
+-----------
+commit ec06d866b7571728cce9ced10752f54583a8d73a
 
-NB:
-static/blocklyfactory can't be tracked because it's custom (from repo fthuin/workspacefactory_bootstrap)
 
-change log: use of audio completely different
+Use of audio completely different.
 
 * old: Blockly.getMainWorkspace().loadAudio_(...) 
 	-> Blockly.getMainWorkspace().getAudioManager().load(...)
