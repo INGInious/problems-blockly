@@ -17,142 +17,152 @@ $#
         <textarea id="header-PID" class="form-control" name="problem[PID][header]"></textarea>
     </div>
 </div>
-<div class="form-group">
-    <label for="visual-PID" class="col-sm-2 control-label">Visual problem</label>
-    <div class="col-sm-10">
-        <div class="checkbox"><label>
-            <input type="checkbox" id="visual-PID" name="problem[PID][options][visual]"/>&nbsp;</label>
-        </div>
+<div id="workspaceAccordion">
+  <div class="card">
+    <div class="card-header" id="headingWorkspace">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseWorkspace" aria-expanded="false" aria-controls="collapseWorkspace">
+          Worspace Options
+        </button>
+      </h5>
     </div>
-</div>
-<div class="form-group">
-    <label for="workspace-options-PID" class="col-sm-2 control-label">Workspace</label>
-    <div class="col-sm-10">
-        <div class="form-group">
-            <label for="collapse-PID" class="col-sm-4 control-label">Can collapse blocks</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="collapse-PID" name="problem[PID][options][collapse]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="comments-PID" class="col-sm-4 control-label">Can comment blocks</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="comments-PID" name="problem[PID][options][comments]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="disable-PID" class="col-sm-4 control-label">Can disable blocks</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="disable-PID" name="problem[PID][options][disable]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="maxBlocks-PID" class="col-sm-4 control-label">Max number of blocks</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="maxBlocks-PID" name="problem[PID][options][maxBlocks]" placeholder="0,1,...,Infinity"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="trashcan-PID" class="col-sm-4 control-label">Use trashcan</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="trashcan-PID" name="problem[PID][options][trashcan]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="horizontalLayout-PID" class="col-sm-4 control-label">Use horizontal layout</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="horizontalLayout-PID" name="problem[PID][options][horizontalLayout]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="toolboxPosition-PID" class="col-sm-4 control-label">Toolbox position</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="toolboxPosition-PID" name="problem[PID][options][toolboxPosition]" placeholder="start or end"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="media-PID" class="col-sm-4 control-label">Media path</label>
-            <div class="col-sm-8">
-                <input type="text" class="form-control" id="media-PID" name="problem[PID][options][media]" placeholder="media: /plugins/blockly/static/blockly/media/"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="css-PID" class="col-sm-4 control-label">Use blockly css</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="css-PID" name="problem[PID][options][css]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <!-- Be carefum studio.js exactly needs this structure -->
-            <label for="grid-PID" class="col-sm-4 control-label">Display grid</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="grid-PID" name="problem[PID][options][grid]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <!-- Be carefum studio.js exactly needs this structure -->
-            <label for="zoom-PID" class="col-sm-4 control-label">Zoom</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="zoom-PID" name="problem[PID][options][zoom]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="rtl-PID" class="col-sm-4 control-label">Right-to-left</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="rtl-PID" name="problem[PID][options][rtl]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="readOnly-PID" class="col-sm-4 control-label">Read only</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="readOnly-PID" name="problem[PID][options][readOnly]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="oneBasedIndex-PID" class="col-sm-4 control-label">1-based index</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="oneBasedIndex-PID" name="problem[PID][options][oneBasedIndex]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="scrollbars-PID" class="col-sm-4 control-label">Scrollbars</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="scrollbars-PID" name="problem[PID][options][scrollbars]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="sounds-PID" class="col-sm-4 control-label">Sounds</label>
-            <div class="col-sm-8">
-                <div class="checkbox"><label>
-                    <input type="checkbox" id="sounds-PID" name="problem[PID][options][sounds]"/>&nbsp;
-                </label></div>
-            </div>
-        </div>
+    <div id="collapseWorkspace" class="collapse" aria-labelledby="headingWorkspace" data-parent="#worspaceAccordion">
+      <div class="card-body">
+          <div class="form-group">
+              <label for="visual-PID" class="col-sm-2 control-label">Visual problem</label>
+              <div class="col-sm-10">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="visual-PID" name="problem[PID][options][visual]"/>&nbsp;</label>
+                  </div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="collapse-PID" class="col-sm-2 control-label">Can collapse blocks <a title="collapses blocks"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="collapse-PID" name="problem[PID][options][collapse]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="comments-PID" class="col-sm-2 control-label">Can comment blocks</label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="comments-PID" name="problem[PID][options][comments]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="disable-PID" class="col-sm-2 control-label">Can disable blocks</label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="disable-PID" name="problem[PID][options][disable]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="maxBlocks-PID" class="col-sm-2 control-label">Max number of blocks <a title="The number must be either a positive integer or Infinity"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="maxBlocks-PID" name="problem[PID][options][maxBlocks]" placeholder="0,1,...,Infinity"/>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="trashcan-PID" class="col-sm-2 control-label">Use trashcan</label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="trashcan-PID" name="problem[PID][options][trashcan]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="horizontalLayout-PID" class="col-sm-2 control-label">Use horizontal layout <a title="Change the layout from vertical to horizontal"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="horizontalLayout-PID" name="problem[PID][options][horizontalLayout]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="toolboxPosition-PID" class="col-sm-2 control-label">Toolbox position <a title="The toolbox position must be start or end"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="toolboxPosition-PID" name="problem[PID][options][toolboxPosition]" placeholder="start or end"/>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="media-PID" class="col-sm-2 control-label">Media path <a title="Path to the directory with pictures and sounds for Blockly"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <div class="col-sm-8">
+                  <input type="text" class="form-control" id="media-PID" name="problem[PID][options][media]" placeholder="media: /plugins/blockly/static/blockly/media/"/>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="css-PID" class="col-sm-2 control-label">Use blockly css</label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="css-PID" name="problem[PID][options][css]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <!-- Be carefum studio.js exactly needs this structure -->
+              <label for="grid-PID" class="col-sm-2 control-label">Display grid</label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="grid-PID" name="problem[PID][options][grid]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <!-- Be carefum studio.js exactly needs this structure -->
+              <label for="zoom-PID" class="col-sm-2 control-label">Zoom</label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="zoom-PID" name="problem[PID][options][zoom]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="rtl-PID" class="col-sm-2 control-label">Right-to-left</label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="rtl-PID" name="problem[PID][options][rtl]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="readOnly-PID" class="col-sm-2 control-label">Read only</label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="readOnly-PID" name="problem[PID][options][readOnly]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="oneBasedIndex-PID" class="col-sm-2 control-label">1-based index <a title="Do something"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="oneBasedIndex-PID" name="problem[PID][options][oneBasedIndex]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="scrollbars-PID" class="col-sm-2 control-label">Scrollbars </label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="scrollbars-PID" name="problem[PID][options][scrollbars]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="sounds-PID" class="col-sm-2 control-label">Sounds <a title="Allow sound utilisation"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <div class="col-sm-8">
+                  <div class="checkbox"><label>
+                      <input type="checkbox" id="sounds-PID" name="problem[PID][options][sounds]"/>&nbsp;
+                  </label></div>
+              </div>
+          </div>
+      </div>
     </div>
+  </div>
 </div>
 <div class="col-sm-offset-1 col-sm-10">
     <h4 style="text-align: center">Files (Interpreter, Visual execution)</h4>
@@ -223,4 +233,3 @@ $#
             <span class="glyphicon glyphicon-sunglasses"></span> Edit toolbox/workspace graphically</button>
     </div>
 </div>
-
