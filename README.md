@@ -11,3 +11,7 @@ In your ``configuration.yaml`` file, add the following plugin entry:
 
     plugins:
       - plugin_module: "inginious-problems-blockly"
+
+## Documentation
+
+The documentation is available on Read the Docs: https://ucl-ingiinginious-problems-blockly.readthedocs.io/en/latest/
