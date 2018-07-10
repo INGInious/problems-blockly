@@ -27,3 +27,13 @@ function load_input_blockly(submissionid, key, input) {
     }
 
 }
+
+function load_feedback_blockly(key, content){
+    //This part is a temporary workaround
+    if (typeof Maze !== "undefined" && typeof Maze.reset !== "undefined" && content[0] !== "success") {    
+        var test = $('<div>');
+        test.html(content[1]);
+        var parsed = jQuery.parseJSON(test.text());
+        Maze.reload_maze(parsed );
+    }
+}
