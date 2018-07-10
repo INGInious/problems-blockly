@@ -118,7 +118,7 @@ BlocklyTask.prototype.updateBlocksNumber = function(self) {
  */
 BlocklyTask.prototype.injectWorkspace = function(blocklyDiv, options, workspaceBlocks) {
     var workspace = Blockly.inject(blocklyDiv, options);
-    var xml = Blockly.Xml.textToDom(blocklyWorkspaceBlocks);
+    var xml = Blockly.Xml.textToDom(blocklyDico["workspace"]);
     Blockly.Xml.domToWorkspace(xml, workspace);
     workspace.cleanUp();
     return workspace;
@@ -473,7 +473,7 @@ BlocklyTaskInterpreter.alert = function(message) {
     });
 };
 
-var blocklyTask = new BlocklyTask(blocklyOptions, blocklyToolbox, blocklyWorkspaceBlocks);
+var blocklyTask = new BlocklyTask(options, blocklyDico["toolbox"], blocklyDico["workspace"]);
 
 /* We need to disable the full screen if the elements are not loaded (because
 some elements might be missing on the full screen. )*/

@@ -1,6 +1,9 @@
 # MAC
 *.DS_STORE
 
+.idea
+__pycache__
+
 build/
 dist/
 inginious_problems_blockly.egg-info/
