@@ -1,9 +1,18 @@
-$def with (courseid, taskid, inputId,name, toolbox,filenames,workspace,options)
+$def with (blockly_dico,task)
 
 $#
 $# This file is part of INGInious. See the LICENSE and the COPYRIGHTS files for
 $# more information about the licensing of this file.
 $#
+
+<!-- Useful vars -->
+<script type="text/javascript">
+    var blocklyDico = $:blockly_dico;
+    var taskid = blocklyDico["taskid"];
+    var courseid = blocklyDico["courseid"];
+    var filenames = blocklyDico["filenames"];
+    var options = JSON.parse(blocklyDico["options"]);
+</script>
 
 <!-- Bootstrap modal fullscreen related stylesheet -->
 <link rel="stylesheet" href="$get_homepath()/plugins/blockly/static/bootstrap-modal-fullscreen.css">
@@ -36,10 +45,10 @@ $#
       <div class="row">
           <div id="blocklyAppLeft" style="height:480px">
               <div id="blocklyAppWorkspace" style="height:100%;">
-                  <div id="blocklyDiv" data-pid="$inputId" style="height:90%;min-height:480px;width:100%;"></div>
+                  <div id="blocklyDiv" data-pid='$blockly_dico["courseid"]' style="height:90%;min-height:480px;width:100%;"></div>
               </div>
               <div id="blocklyAppEditor" style="display:none;height:100%;">
-                  <textarea name="$inputId" id="codeArea"
+                  <textarea name='$blockly_dico["id"]' id="codeArea"
                   type="text"
                   style="display:none;"
                   data-x-language="python"
@@ -68,7 +77,7 @@ $#
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">$name</h4>
+                <h4 class="modal-title">$blockly_dico["name"]</h4>
             </div>
             <div id="blocklyModalBody" class="modal-body" style="height:80vh;">
                 <div class="row">
@@ -109,21 +118,12 @@ $#
 <!-- Blockly English Translation -->
 <script src="$get_homepath()/plugins/blockly/static/blockly/msg/js/en.js" type="text/javascript" charset="utf-8"></script>
 
-$if filenames is not None:
-    $for filename in filenames:
-        <script src="$get_homepath()/course/$courseid/$taskid/$filename" type="text/javascript" charset="utf-8"></script>
-
-<script type="text/javascript">
-var blocklyToolbox = `$:toolbox`;
-var blocklyOptions = $:options;
-var blocklyWorkspaceBlocks = `$:workspace`;
-var course = "$courseid";
-var taskid = "$taskid";
-</script>
+$if blockly_dico["filenames"] is not None:
+    $for filename in blockly_dico["filenames"]:
+        <script src="$get_homepath()/course/$blockly_dico['courseid']/$blockly_dico['taskid']/$filename" type="text/javascript" charset="utf-8"></script>
 
 <!-- Local JavaScript -->
 <script src="$get_homepath()/plugins/blockly/static/blockly/blockly.js" type="text/javascript" charset="utf-8"></script>
 
 <!-- JS Interpreter to run code locally -->
-
 <script src="$get_homepath()/plugins/blockly/static/JS-Interpreter/acorn_interpreter.js" type="text/javascript" charset="utf-8"></script>

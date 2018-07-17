@@ -137,17 +137,19 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
 
     def show_input(self, template_helper, language, seed):
         """ Show BlocklyBox """
+        blockly_dico = dict()
         task = self.get_task()
-        courseid = task.get_course_id()
-        taskid = task.get_id()
-        filenames = []
-        for filename in self._files + self._blocks_files:
-            filenames.append(str(filename))
-        toolbox = self._toolbox
-        return str(DisplayableBlocklyProblem.get_renderer(template_helper).box_blockly(courseid, taskid, self.get_id(),
-                                                                                self.get_name(), toolbox,
-                                                                                filenames, self._workspace,
-                                                                                json.dumps(self._options)))
+        blockly_dico["courseid"] = task.get_course_id()
+        blockly_dico["taskid"] = task.get_id()
+        blockly_dico["filenames"] = []
+        files = self._files + self._blocks_files
+        blockly_dico["filenames"] = [str(filename) for filename in files]
+        blockly_dico["toolbox"] = self._toolbox
+        blockly_dico["id"] = self.get_id()
+        blockly_dico["workspace"] = self._workspace
+        blockly_dico["name"] = self.get_name()
+        blockly_dico["options"] = json.dumps(self._options)
+        return str(DisplayableBlocklyProblem.get_renderer(template_helper).box_blockly(blockly_dico,task))
 
 
 def init(plugin_manager, course_factory, client, plugin_config):
