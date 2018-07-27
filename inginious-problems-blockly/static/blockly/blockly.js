@@ -62,7 +62,7 @@ BlocklyTask = function(options, toolbox, workspaceBlocks) {
     window.BlocklyLoopTrap = 1000;
     Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if(--window.BlocklyLoopTrap == 0) throw "Infinite loop.";\n';
 
-    this.interpreter = new BlocklyTaskInterpreter(this);
+    this.interpreter = new BlocklyTaskInterpreter(this,options);
 };
 
 /**
@@ -353,8 +353,9 @@ BlocklyTask.prototype.onTextMode = function() {
  * @constructor
  * @param task: a BlocklyTask object
  */
-var BlocklyTaskInterpreter = function(task) {
+var BlocklyTaskInterpreter = function(task,options) {
     this.task = task;
+    this.options= options;
     this.workspace = this.task.workspace;
     this.highlightPause = false;
     this.interpreter = null;
@@ -445,7 +446,8 @@ BlocklyTaskInterpreter.prototype.stepCode = function(self) {
             self.task.stopButton.hide();
             self.task.resetButton.show();
         } else {
-            self.timeout = window.setTimeout(function() {self.stepCode(self); }, 60);
+            var speed = "speed" in this.options? this.options.speed : "60";
+            self.timeout = window.setTimeout(function() {self.stepCode(self); }, speed);
         }
     }
 };

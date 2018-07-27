@@ -19,6 +19,7 @@ function studio_init_template_blockly(well, pid, problem) {
         "comments" : false,
         "disable" : false,
         "maxBlocks" : "Infinity",
+        "speed" : "60",
         "trashcan" : false,
         "horizontalLayout" : false,
         "toolboxPosition" : "start",
@@ -43,6 +44,11 @@ function studio_init_template_blockly(well, pid, problem) {
             "scaleSpeed" : "1.2"
         }
     };
+
+    if( !("speed" in options)) {
+        options.speed = 60;
+    }
+
 
     workspace_options(pid,options);
 
@@ -90,6 +96,7 @@ function workspace_options(pid, options){
     $("#comments-" + pid).prop('checked', "comments" in options ? options.comments : false);
     $("#disable-" + pid).prop('checked', "disable" in options ? options.disable : false);
     $("#maxBlocks-" + pid).val("maxBlocks" in options ? options.maxBlocks : "Infinity");
+    $("#speed-" + pid).val("speed" in options ? options.speed : "60");
     $("#trashcan-" + pid).prop('checked', "trashcan" in options ? options.trashcan : false);
     $("#horizontalLayout-" + pid).prop('checked', "horizontalLayout" in options ? options.horizontalLayout : false);
 
