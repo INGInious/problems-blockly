@@ -74,18 +74,18 @@ BlocklyTask.prototype.display = function() {
      * depending on the options given in the task.
      */
     if ("visual" in this.options) {
-        this.blocklyAppLeft.addClass("col-xs-10");
-        this.blocklyAppRight.addClass("class-xs-2");
-        this.blocklyAppModalLeft.addClass("col-xs-9");
-        this.blocklyAppModalRight.addClass("col-xs-3");
+        this.blocklyAppLeft.addClass("col-sm-10");
+        this.blocklyAppRight.addClass("class-sm-2");
+        this.blocklyAppModalLeft.addClass("col-sm-10 row");
+        this.blocklyAppModalRight.addClass("col-sm-2");
         if ("position" in this.options.visual && this.options.visual.position == "left") {
             this.blocklyAppRight.parent().prepend(this.blocklyAppRight.detach());
             this.blocklyAppModalRight.parent().prepend(this.blocklyAppModalRight.detach());
         }
     } else {
-        this.blocklyAppLeft.addClass("col-xs-12");
+        this.blocklyAppLeft.addClass("col-sm-12");
         this.blocklyAppRight.hide();
-        this.blocklyAppModalLeft.addClass("col-xs-12");
+        this.blocklyAppModalLeft.addClass("col-sm-12");
         this.blocklyAppModalRight.hide();
     }
     /* Show the limit of blocks that can be dragged in the workspace
@@ -306,7 +306,7 @@ BlocklyTask.prototype.onModalClose = function(self) {
  */
 BlocklyTask.prototype.onWorkspaceMode = function() {
     this.blocklyAppWorkspace.removeClass();
-    this.blocklyAppWorkspace.addClass("col-xs-12");
+    this.blocklyAppWorkspace.addClass("col-sm-12");
     this.blocklyAppWorkspace.show();
     this.blocklyAppEditor.removeClass();
     this.blocklyAppEditor.hide();
@@ -320,10 +320,10 @@ BlocklyTask.prototype.onWorkspaceMode = function() {
  */
 BlocklyTask.prototype.onSplitMode = function() {
     this.blocklyAppWorkspace.removeClass();
-    this.blocklyAppWorkspace.addClass("col-xs-6");
+    this.blocklyAppWorkspace.addClass("col-sm-6");
     this.blocklyAppWorkspace.show();
     this.blocklyAppEditor.removeClass();
-    this.blocklyAppEditor.addClass("col-xs-6");
+    this.blocklyAppEditor.addClass("col-sm-6");
     this.blocklyAppEditor.show();
     if (this.editor.getValue() === "") {
         this.editor.setValue("\n\n");
@@ -341,7 +341,7 @@ BlocklyTask.prototype.onTextMode = function() {
     this.blocklyAppWorkspace.removeClass();
     this.blocklyAppWorkspace.hide();
     this.blocklyAppEditor.removeClass();
-    this.blocklyAppEditor.addClass("col-xs-12");
+    this.blocklyAppEditor.addClass("col-sm-12");
     this.blocklyAppEditor.show();
     if (this.editor.getValue() === "") {
         this.editor.setValue("\n\n");

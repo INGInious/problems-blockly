@@ -1,7 +1,7 @@
 var FactoryView = function(controller, id, pid) {
     this.controller = controller;
     this.div = $('#' + id);
-    this.div.addClass('col-xs-12');
+    this.div.addClass('col-sm-12 row');
     this.div.css('height', '60vh');
     this.factoryDiv = this.createColumn('Factory', 6);
     this.div.append(this.factoryDiv);
@@ -15,9 +15,8 @@ var FactoryView = function(controller, id, pid) {
     this.div.append(this.previewDiv);
     this.tabList = BootstrapElement.tabList();
     this.factoryDiv.append(this.tabList);
-    this.toolboxTab = BootstrapElement.tab('toolboxFactory', 'Toolbox');
-    this.toolboxTab.addClass('active');
-    this.workspaceTab = BootstrapElement.tab('workspaceFactory', 'Workspace');
+    this.toolboxTab = BootstrapElement.tab('toolboxFactory', 'Toolbox', true);
+    this.workspaceTab = BootstrapElement.tab('workspaceFactory', 'Workspace', false);
     this.tabList.append(this.toolboxTab);
     this.tabList.append(this.workspaceTab);
     this.toolboxTextarea = $("#toolbox-" + pid).next('.CodeMirror')[0].CodeMirror;
@@ -29,7 +28,7 @@ var FactoryView = function(controller, id, pid) {
     this.toolboxTabPane = BootstrapElement.tabPane('toolboxFactory');
     this.toolboxTabPane.addClass('fade');
     this.toolboxTabPane.addClass('active');
-    this.toolboxTabPane.addClass('in');
+    this.toolboxTabPane.addClass('show');
     this.toolboxTabPane.append(this.toolboxWorkspaceDiv);
     this.workspaceTabPane = BootstrapElement.tabPane('workspaceFactory');
     this.workspaceTabPane.append(this.preloadWorkspaceDiv);
@@ -339,11 +338,11 @@ FactoryView.prototype.createCategoryList = function(categoriesName) {
 
 FactoryView.prototype.setSelectedCategory = function(categoryName) {
     var categories = this.categoriesList.find('li');
-    categories.removeClass('active');
     for (var i = 0, len = categories.length; i < len ; i++) {
         var category = $($(categories[i]).find('a')[0]);
+        category.removeClass('active');
         if (category.html() === categoryName) {
-            $(categories[i]).addClass('active');
+            category.addClass('active');
         }
     }
     this.selectedCategory = categoryName;
@@ -351,7 +350,9 @@ FactoryView.prototype.setSelectedCategory = function(categoryName) {
 
 FactoryView.prototype.createCategoryListItem = function(name) {
     var li = BootstrapElement.listItem();
+    li.addClass("nav-item");
     var a = BootstrapElement.link();
+    a.addClass("nav-link");
     a.html(name);
     a.on('click.simple', function() {
         this.setSelectedCategory(name);

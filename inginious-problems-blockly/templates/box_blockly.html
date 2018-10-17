@@ -14,79 +14,71 @@ $#
     var options = JSON.parse(blocklyDico["options"]);
 </script>
 
-<!-- Bootstrap modal fullscreen related stylesheet -->
-<link rel="stylesheet" href="$get_homepath()/plugins/blockly/static/bootstrap-modal-fullscreen.css">
-<link rel="stylesheet" href="$get_homepath()/plugins/blockly/static/bootstrap-modal-transparent.css">
-
 <div id="blocklyInterpreterAlert" class="alert alert-danger" style="display:none;">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Erreur d'exécution</strong> <p id="blocklyInterpreterAlertText"></p>
 </div>
 
 <!-- Workspace on the page -->
-<div id="blocklyButtonsRow" class="row">
-    <div id="blocklyButtons" class="col-xs-8">
-        <button id="playButton" type="button" class="btn btn-success" style="margin-left:5px;margin-bottom:5px;margin-top:5px;border-radius:10px;border:1px solid transparent;"><span class="glyphicon glyphicon-play"></span> Run code</button>
-        <button id="stopButton" type="button" class="btn btn-danger" style="display:none;margin-left:5px;margin-bottom:5px;margin-top:5px;border-radius:10px;border:1px solid transparent;"><span class="glyphicon glyphicon-pause"></span> Stop</button>
-        <button id="resetButton" type="button" class="btn btn-danger" style="display:none;margin-left:5px;margin-bottom:5px;margin-top:5px;border-radius:10px;border:1px solid transparent;"><span class="glyphicon glyphicon-repeat"></span> Restart</button>
-        <div class="btn-group">
-            <button id="blockModeButtons" type="button" class="btn btn-default active"><span class="glyphicon glyphicon-th-large"></span> Blocks</button>
-            <button id="splitModeButtons" type="button" class="btn btn-default"><span class="glyphicon glyphicon-resize-horizontal"></span> Split</button>
-            <button id="textModeButtons" type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span> Text</button>
+<div id="blocklyButtonsRow" class="row mb-3">
+    <div id="blocklyButtons" class="col-sm-8">
+        <button id="playButton" type="button" class="btn btn-success" style="border-radius:10px;"><span class="fa fa-fw fa-play"></span> Run code</button>
+        <button id="stopButton" type="button" class="btn btn-danger" style="display:none;border-radius:10px;"><span class="fa fa-fw fa-stop"></span> Stop</button>
+        <button id="resetButton" type="button" class="btn btn-danger" style="display:none;border-radius:10px;"><span class="fa fa-fw fa-refresh"></span> Restart</button>
+        <div class="btn-group ml-2 mr-2">
+            <button id="blockModeButtons" type="button" class="btn btn-secondary active"><span class="fa fa-fw fa-th-large"></span> Blocks</button>
+            <button id="splitModeButtons" type="button" class="btn btn-secondary"><span class="fa fa-fw fa-arrows-h"></span> Split</button>
+            <button id="textModeButtons" type="button" class="btn btn-secondary"><span class="fa fa-fw fa-pencil"></span> Text</button>
         </div>
-        <button type="button" id="buttonFullscreen" disabled="true" class="btn btn-default" data-toggle="modal" data-target="#blocklyModal" style="margin-left:5px;margin-bottom:5px;margin-top:5px;border-radius:10px;border:1px solid transparent;"><span class="glyphicon glyphicon-modal-window"></span> Toggle full screen</button>
+        <button type="button" id="buttonFullscreen" disabled="true" class="btn btn-secondary" data-toggle="modal" data-target="#blocklyModal" style="border-radius:10px;"><span class="fa fa-fw fa-window-maximize"></span> Toggle full screen</button>
     </div>
-    <div id="blocklyBlocksText" class="col-xs-4" style="margin-top:10px;">
-        <p id="blocksLimitText" class="text-info">You have <b id="blocksLimitNumber"></b> block(s) left.</p>
+    <div id="blocklyBlocksText" class="col-sm-4 text-right" style="margin-top:10px;">
+        <p id="blocksLimitText" class="text-info pr-4">You have <b id="blocksLimitNumber"></b> block(s) left.</p>
     </div>
-</div>
-<div class="row">
-  <div class="col-xs-12" id="blocklyApp">
-      <div class="row">
-          <div id="blocklyAppLeft" style="height:480px">
-              <div id="blocklyAppWorkspace" style="height:100%;">
-                  <div id="blocklyDiv" data-pid='$blockly_dico["courseid"]' style="height:90%;min-height:480px;width:100%;"></div>
-              </div>
-              <div id="blocklyAppEditor" style="display:none;height:100%;">
-                  <textarea name='$blockly_dico["id"]' id="codeArea"
-                  type="text"
-                  style="display:none;"
-                  data-x-language="python"
-                  ></textarea>
-              </div>
-        </div>
-          <div id="blocklyAppRight" class="col-xs-2">
-              <div id="visualization">
-                  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="blocklySvgZone" style="display:none;">
-                      <g id="look">
-                        <path d="M 0,-15 a 15 15 0 0 1 15 15" />
-                        <path d="M 0,-35 a 35 35 0 0 1 35 35" />
-                        <path d="M 0,-55 a 55 55 0 0 1 55 55" />
-                      </g>
-                  </svg>
-              </div>
-          </div>
-      </div>
-  </div>
 </div>
 
+<div class="row">
+    <div id="blocklyAppRight" class="col-sm-2">
+        <div id="visualization">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" id="blocklySvgZone" >
+                <g id="look">
+                    <path d="M 0,-15 a 15 15 0 0 1 15 15" />
+                    <path d="M 0,-35 a 35 35 0 0 1 35 35" />
+                    <path d="M 0,-55 a 55 55 0 0 1 55 55" />
+                </g>
+            </svg>
+        </div>
+    </div>
+    <div class="col-sm-10 row" id="blocklyAppLeft">
+        <div id="blocklyAppWorkspace" class="col-sm-12">
+            <div id="blocklyDiv" data-pid='$blockly_dico["courseid"]' style="height:100%;min-height:480px;"></div>
+        </div>
+        <div id="blocklyAppEditor" style="display:none;">
+            <textarea name='$blockly_dico["id"]' id="codeArea"
+            type="text"
+            style="display:none;"
+            data-x-language="python"
+            ></textarea>
+        </div>
+    </div>
+</div>
 
 <!-- Modal with a bigger workspace -->
-<div id="blocklyModal" class="modal modal-fullscreen fade" role="dialog" tabindex="-1">
-    <div class="modal-dialog" style="width:100vw;">
+<div id="blocklyModal" class="modal fade" role="dialog" tabindex="-1">
+    <div class="modal-dialog" style="min-width: 98%;">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">$blockly_dico["name"]</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
-            <div id="blocklyModalBody" class="modal-body" style="height:80vh;">
-                <div class="row">
-                    <div id="blocklyButtonsModal" class="col-xs-12">
+            <div id="blocklyModalBody" class="modal-body">
+                <div class="row mb-3">
+                    <div id="blocklyButtonsModal" class="col-sm-12 row">
                     </div>
                 </div>
-                <div id="blocklyAppModal" style="height:100%;">
-                    <div class="row" style="height:100%;">
-                        <div id="blocklyAppModalLeft" style="height:100%;">
+                <div id="blocklyAppModal">
+                    <div class="row">
+                        <div id="blocklyAppModalLeft" class="col-sm-10 row">
                         </div>
                         <div id="blocklyAppModalRight">
                         </div>
@@ -94,7 +86,7 @@ $#
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -105,9 +97,6 @@ $#
     style="display:none;"
     data-x-language="xml"
 ></textarea>
-
-<!-- Code for the full screen modal -->
-<script src="$get_homepath()/plugins/blockly/static/bootstrap-modal-backdrop.js" type="text/javascript" charset="utf-8"></script>
 
 <!-- Blockly official JavaScript -->
 <script src="$get_homepath()/plugins/blockly/static/blockly/blockly_compressed.js" type="text/javascript" charset="utf-8"></script>

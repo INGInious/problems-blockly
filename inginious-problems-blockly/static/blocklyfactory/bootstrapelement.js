@@ -9,7 +9,7 @@ var BootstrapElement = function() {
 BootstrapElement.button = function(id, content) {
     var button = $("<button>");
     button.addClass('btn');
-    button.addClass('btn-default');
+    button.addClass('btn-secondary');
     button.attr('id', id);
     button.attr('type', 'button');
     button.css('margin-top', '5px');
@@ -41,7 +41,7 @@ BootstrapElement.colorSquare = function(red, green, blue) {
  */
 BootstrapElement.column = function(size) {
     var div = $('<div>');
-    div.addClass('col-xs-' + size);
+    div.addClass('col-sm-' + size);
     div.css('height', '100%');
     return div;
 };
@@ -69,7 +69,7 @@ BootstrapElement.dropdown = function(name) {
 BootstrapElement.dropdownButton = function(id, content) {
     var button = $("<button>");
     button.addClass('btn');
-    button.addClass('btn-default');
+    button.addClass('btn-secondary');
     button.addClass('dropdown-toggle');
     button.attr('id', id);
     button.attr('type', 'button');
@@ -91,36 +91,31 @@ BootstrapElement.dropdownGroup = function() {
 };
 
 BootstrapElement.dropdownMenu = function(buttonId) {
-    var ul = $("<ul>");
-    ul.addClass('dropdown-menu');
-    ul.attr('role', 'menu');
-    ul.attr('aria-labelledby', buttonId);
-    return ul;
+    var div = $("<div>");
+    div.addClass('dropdown-menu');
+    return div;
 };
 
 BootstrapElement.dropdownMenuItem = function(id, content, onclick) {
-    var li = $("<li>");
     var a = $("<a>");
     a.attr('id', id);
     a.on('click.simple', onclick);
+    a.addClass("dropdown-item");
+    a.css("color", "black");
     a.append(content);
-    li.append(a);
-    li.a = a;
-    return li;
+    return a;
 };
 
 BootstrapElement.dropdownSubMenu = function(name, content) {
-    var li = BootstrapElement.listItem();
-    li.addClass('dropdown-submenu');
     var a = BootstrapElement.link();
+    a.addClass('dropdown-item dropdown-submenu');
+    a.css("color", "black");
     a.html(name);
-    a.attr('tabindex', '-1');
-    li.append(a);
-    var ul = BootstrapElement.dropdownMenu();
-    ul.append(content);
+    var div = BootstrapElement.dropdownMenu();
+    div.append(content);
 
-    li.append(ul);
-    return li;
+    a.append(div);
+    return a;
 };
 
 /*
@@ -151,19 +146,23 @@ BootstrapElement.stackedTabs = function(content) {
     var ul = $("<ul>");
     ul.addClass('nav');
     ul.addClass('nav-pills');
-    ul.addClass('nav-stacked');
+    ul.addClass('nav-fill');
+    ul.addClass('flex-column');
     ul.append(content);
     return ul;
 };
 
-BootstrapElement.tab = function(targetId, name) {
+BootstrapElement.tab = function(targetId, name, active) {
     var tab = $("<li>");
     tab.attr('role', 'presentation');
+    tab.addClass("nav-item");
 
     var link = $("<a>");
     link.attr('href', '#' + targetId);
     link.attr('role', 'tab');
     link.attr('data-toggle', 'tab');
+    link.addClass("nav-link");
+    if(active) link.addClass("active");
     link.html(name);
     tab.append(link);
 
