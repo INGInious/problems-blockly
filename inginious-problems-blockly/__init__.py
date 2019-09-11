@@ -35,8 +35,8 @@ class BlocklyProblem(Problem):
     """
     Blockly problem
     """
-    def __init__(self, task, problemid, content, translations=None):
-        super(BlocklyProblem, self).__init__(task, problemid, content, translations)
+    def __init__(self, task, problemid, content):
+        super(BlocklyProblem, self).__init__(task, problemid, content)
         self._toolbox = content.get("toolbox", "<xml></xml>")
         self._workspace = content.get("workspace", "")
         self._options = content.get("options", [])
@@ -111,8 +111,8 @@ class BlocklyProblem(Problem):
 class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
 
     """ A displayable blockly problem """
-    def __init__(self, task, problemid, content, translations=None):
-        super(DisplayableBlocklyProblem, self).__init__(task, problemid, content, translations)
+    def __init__(self, task, problemid, content):
+        super(DisplayableBlocklyProblem, self).__init__(task, problemid, content)
 
     @classmethod
     def show_editbox(self, template_helper, key):
