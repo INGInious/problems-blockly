@@ -128,8 +128,8 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         return template_helper.get_custom_renderer(os.path.join(PATH_TO_PLUGIN, "templates"), False)
 
     @classmethod
-    def get_type_name(self, gettext):
-        return gettext("blockly")
+    def get_type_name(self, language):
+        return "blockly"
 
     def adapt_input_for_backend(self, input_data):
         """ Adapt the input from web.py for the inginious.backend """
