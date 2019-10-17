@@ -115,11 +115,11 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         super(DisplayableBlocklyProblem, self).__init__(task, problemid, content)
 
     @classmethod
-    def show_editbox(self, template_helper, key):
+    def show_editbox(self, template_helper, key, language):
         return DisplayableBlocklyProblem.get_renderer(template_helper).editbox_blockly(key)
 
     @classmethod
-    def show_editbox_templates(cls, template_helper, key):
+    def show_editbox_templates(cls, template_helper, key, language):
         return DisplayableBlocklyProblem.get_renderer(template_helper).editbox_blockly_templates(key)
 
     @classmethod
