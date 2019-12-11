@@ -37,3 +37,36 @@ function load_feedback_blockly(key, content){
         Maze.reload_maze(parsed );
     }
 }
+
+function load_webstorage_blockly(courseid,problemid){
+    try {
+      var wsp = Blockly.getMainWorkspace();
+      var name = courseid+"/"+problemid;
+      var code = localStorage[name];
+      var dom = Blockly.Xml.textToDom(code);
+      Blockly.Xml.domToWorkspace(dom,wsp);
+    }
+    catch(error) {
+      console.error(error);
+      // expected output: ReferenceError: nonExistentFunction is not defined
+      // Note - error messages will vary depending on browser
+    }
+}
+
+function save_webstorage_blockly(courseid,problemid){
+    try
+    {
+      var wsp = Blockly.getMainWorkspace();
+      var dom =  Blockly.Xml.workspaceToDom(wsp);
+      var code = Blockly.Xml.domToText(dom);
+      var name = courseid+"/"+problemid;
+      localStorage.setItem(name, code);
+
+    }
+    catch(error) {
+      console.error(error);
+      // expected output: ReferenceError: nonExistentFunction is not defined
+      // Note - error messages will vary depending on browser
+    }
+
+}
