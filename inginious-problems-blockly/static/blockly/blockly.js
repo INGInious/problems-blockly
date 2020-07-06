@@ -74,10 +74,10 @@ BlocklyTask.prototype.display = function() {
      * depending on the options given in the task.
      */
     if ("visual" in this.options) {
-        this.blocklyAppLeft.addClass("col-sm-10");
-        this.blocklyAppRight.addClass("class-sm-2");
-        this.blocklyAppModalLeft.addClass("col-sm-10 row");
-        this.blocklyAppModalRight.addClass("col-sm-2");
+        this.blocklyAppLeft.addClass("col-sm-9");
+        this.blocklyAppRight.addClass("class-sm-3");
+        this.blocklyAppModalLeft.addClass("col-sm-9 row");
+        this.blocklyAppModalRight.addClass("col-sm-3");
         if ("position" in this.options.visual && this.options.visual.position == "left") {
             this.blocklyAppRight.parent().prepend(this.blocklyAppRight.detach());
             this.blocklyAppModalRight.parent().prepend(this.blocklyAppModalRight.detach());
@@ -357,7 +357,6 @@ var BlocklyTaskInterpreter = function(task,options) {
     this.task = task;
     this.options= options;
     this.workspace = this.task.workspace;
-    this.highlightPause = false;
     this.interpreter = null;
     this.timeout = null;
 };
@@ -381,13 +380,6 @@ BlocklyTaskInterpreter.prototype.init = function(self) {
             return interpreter.createPrimitive(prompt(text));
         };
         interpreter.setProperty(scope, 'prompt', interpreter.createNativeFunction(wrapper));
-
-        // Add an API function for highlighting blocks.
-        wrapper = function(id) {
-            id = id ? id.toString() : '';
-            return interpreter.createPrimitive(self.highlightBlock(id));
-        };
-        interpreter.setProperty(scope, 'highlightBlock', interpreter.createNativeFunction(wrapper));
     };
 };
 
@@ -397,14 +389,9 @@ BlocklyTaskInterpreter.prototype.init = function(self) {
  */
 BlocklyTaskInterpreter.prototype.parseCode = function() {
     // Generate JavaScript code and parse it.
-    Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
-    Blockly.JavaScript.addReservedWords('highlightBlock');
 
     var code = Blockly.JavaScript.workspaceToCode(this.workspace);
     this.interpreter = new Interpreter(code, this.init(this));
-
-    this.highlightPause = false;
-    this.workspace.highlightBlock(null);
 };
 
 /**
@@ -429,7 +416,7 @@ BlocklyTaskInterpreter.prototype.stop = function() {
  * Execute a step of the code
  */
 BlocklyTaskInterpreter.prototype.stepCode = function(self) {
-    var ok;
+    /*var ok;
     try {
         ok = self.interpreter.step();
         if (typeof animate !== "undefined") {
@@ -449,16 +436,44 @@ BlocklyTaskInterpreter.prototype.stepCode = function(self) {
             var speed = "speed" in this.options? this.options.speed : "60";
             self.timeout = window.setTimeout(function() {self.stepCode(self); }, speed);
         }
-    }
-};
+    }*/
 
-/**
- * Highlight a block
- * @param id: id of the block to be highlighted
- */
-BlocklyTaskInterpreter.prototype.highlightBlock = function(id) {
-    this.workspace.highlightBlock(id);
-    this.highlightPause = true;
+    // Try running the user's code.  There are four possible outcomes:
+    // 1. If pegman reaches the finish [SUCCESS], true is thrown.
+    // 2. If the program is terminated due to running too long [TIMEOUT],
+    //    false is thrown.
+    // 3. If another error occurs [ERROR], that error is thrown.
+    // 4. If the program ended normally but without solving the maze [FAILURE],
+    //    no error or exception is thrown.
+    try {
+        var ticks = 10000;  // 10k ticks runs Pegman for about 8 minutes.
+        while (self.interpreter.step()) {
+          if (ticks-- == 0) {
+            throw Infinity;
+          }
+        }
+    } catch (e) {
+    // A boolean is thrown for normal termination.
+    // Abnormal termination is a user error.
+        if (e === Infinity) {
+          //Maze.result = Maze.ResultType.TIMEOUT;
+        } else if (e === false) {
+          //Maze.result = Maze.ResultType.ERROR;
+        } else {
+          // Syntax error, can't happen.
+          //Maze.result = Maze.ResultType.ERROR;
+          console.log(e);
+          alert(e);
+        }
+    }
+
+    // Maze.log now contains a transcript of all the user's actions.
+    // Reset the maze and animate the transcript.
+    if ("visual" in this.options) {
+        animate();
+    }
+    self.task.stopButton.hide();
+    self.task.resetButton.show();
 };
 
 /**
