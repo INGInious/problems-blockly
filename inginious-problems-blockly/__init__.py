@@ -96,7 +96,7 @@ class BlocklyProblem(Problem):
         return Problem.get_text_fields()
 
     def check_answer(self, _, __):
-        return None, None, None, 0
+        return None, None, None, 0, ""
 
     def input_is_consistent(self, task_input, default_allowed_extension, default_max_size):
         if not self.get_id() in task_input:
