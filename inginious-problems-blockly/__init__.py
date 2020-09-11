@@ -35,8 +35,9 @@ class BlocklyProblem(Problem):
     """
     Blockly problem
     """
-    def __init__(self, task, problemid, content):
-        super(BlocklyProblem, self).__init__(task, problemid, content)
+    def __init__(self, problemid, content, translations, taskfs):
+        super(BlocklyProblem, self).__init__( problemid, content, translations, taskfs)
+        self._task_fs = taskfs
         self._toolbox = content.get("toolbox", "<xml></xml>")
         self._workspace = content.get("workspace", "")
         self._options = content.get("options", [])
@@ -111,8 +112,8 @@ class BlocklyProblem(Problem):
 class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
 
     """ A displayable blockly problem """
-    def __init__(self, task, problemid, content):
-        super(DisplayableBlocklyProblem, self).__init__(task, problemid, content)
+    def __init__(self, problemid, content, translations, taskfs):
+        super(DisplayableBlocklyProblem, self).__init__(problemid, content, translations, taskfs)
 
     @classmethod
     def show_editbox(self, template_helper, key, language):
@@ -138,9 +139,9 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
     def show_input(self, template_helper, language, seed):
         """ Show BlocklyBox """
         blockly_dico = dict()
-        task = self.get_task()
-        blockly_dico["courseid"] = task.get_course_id()
-        blockly_dico["taskid"] = task.get_id()
+        coursedir, taskid = os.path.split(self._task_fs.prefix.rstrip("/"))
+        blockly_dico["taskid"] = taskid
+        blockly_dico["courseid"] = os.path.split(coursedir)[1]
         blockly_dico["filenames"] = []
         files = self._files + self._blocks_files
         blockly_dico["filenames"] = [str(filename) for filename in files]
@@ -149,7 +150,7 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         blockly_dico["workspace"] = self._workspace
         blockly_dico["name"] = self.get_name()
         blockly_dico["options"] = json.dumps(self._options)
-        return str(DisplayableBlocklyProblem.get_renderer(template_helper).box_blockly(blockly_dico,task))
+        return str(DisplayableBlocklyProblem.get_renderer(template_helper).box_blockly(blockly_dico))
 
 
 def init(plugin_manager, course_factory, client, plugin_config):
