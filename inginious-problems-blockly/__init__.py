@@ -4,28 +4,23 @@
 # more information about the licensing of this file.
 
 import os
-import web
+from flask import send_from_directory
 import json
 
 from inginious.common.tasks_problems import Problem
+from inginious.frontend.pages.utils import INGIniousPage
 from inginious.frontend.task_problems import DisplayableProblem
 
 __version__ = "0.1.dev0"
 
 PATH_TO_PLUGIN = os.path.abspath(os.path.dirname(__file__))
+PATH_TO_TEMPLATES = os.path.join(PATH_TO_PLUGIN, "templates")
 
 
-class StaticMockPage(object):
-    # TODO: Replace by shared static middleware and let webserver serve the files
+class StaticMockPage(INGIniousPage):
+
     def GET(self, path):
-        if not os.path.abspath(PATH_TO_PLUGIN) in os.path.abspath(os.path.join(PATH_TO_PLUGIN, path)):
-            raise web.notfound()
-
-        try:
-            with open(os.path.join(PATH_TO_PLUGIN, "static", path), 'rb') as file:
-                return file.read()
-        except:
-            raise web.notfound()
+        return send_from_directory(os.path.join(PATH_TO_PLUGIN, "static"), path)
 
     def POST(self, path):
         return self.GET(path)
@@ -35,8 +30,9 @@ class BlocklyProblem(Problem):
     """
     Blockly problem
     """
+
     def __init__(self, problemid, content, translations, taskfs):
-        super(BlocklyProblem, self).__init__( problemid, content, translations, taskfs)
+        super(BlocklyProblem, self).__init__(problemid, content, translations, taskfs)
         self._task_fs = taskfs
         self._toolbox = content.get("toolbox", "<xml></xml>")
         self._workspace = content.get("workspace", "")
@@ -58,7 +54,7 @@ class BlocklyProblem(Problem):
 
         if "options" in problem_content:
             blockly_options = ['collapse', 'comments', 'disable', 'trashcan', 'horizontalLayout', 'css',
-                               'oneBasedIndex', 'readOnly', 'rtl',  'scrollbars', 'sounds']
+                               'oneBasedIndex', 'readOnly', 'rtl', 'scrollbars', 'sounds']
             problem_options = problem_content['options']
             for option in blockly_options:
                 if option in problem_options:
@@ -85,10 +81,13 @@ class BlocklyProblem(Problem):
             zoom_options["maxScale"] = float(zoom_options["maxScale"]) if "maxScale" in zoom_options else 3.0
 
         if "files" in problem_content:
-            problem_content["files"] = [val for _, val in sorted(iter(problem_content["files"].items()), key=lambda x: int(x[0])) if val != ""]
+            problem_content["files"] = [val for _, val in
+                                        sorted(iter(problem_content["files"].items()), key=lambda x: int(x[0])) if
+                                        val != ""]
 
         if "blocks_files" in problem_content:
-            problem_content["blocks_files"] = [val for _, val in sorted(iter(problem_content["blocks_files"].items()), key=lambda x: int(x[0])) if val != ""]
+            problem_content["blocks_files"] = [val for _, val in sorted(iter(problem_content["blocks_files"].items()),
+                                                                        key=lambda x: int(x[0])) if val != ""]
 
         return problem_content
 
@@ -105,28 +104,23 @@ class BlocklyProblem(Problem):
 
         # do not allow empty answers
         if len(task_input[self.get_id()]) == 0:
-                return False
+            return False
         return True
 
 
 class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
-
     """ A displayable blockly problem """
+
     def __init__(self, problemid, content, translations, taskfs):
         super(DisplayableBlocklyProblem, self).__init__(problemid, content, translations, taskfs)
 
     @classmethod
     def show_editbox(self, template_helper, key, language):
-        return DisplayableBlocklyProblem.get_renderer(template_helper).editbox_blockly(key)
+        return template_helper.render("editbox_blockly.html", template_folder=PATH_TO_TEMPLATES, key=key)
 
     @classmethod
     def show_editbox_templates(cls, template_helper, key, language):
-        return DisplayableBlocklyProblem.get_renderer(template_helper).editbox_blockly_templates(key)
-
-    @classmethod
-    def get_renderer(cls, template_helper):
-        """ Get the renderer for this class problem """
-        return template_helper.get_custom_renderer(os.path.join(PATH_TO_PLUGIN, "templates"), False)
+        return template_helper.render("editbox_blockly_templates.html", template_folder=PATH_TO_TEMPLATES, key=key)
 
     @classmethod
     def get_type_name(self, language):
@@ -150,12 +144,13 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         blockly_dico["workspace"] = self._workspace
         blockly_dico["name"] = self.get_name()
         blockly_dico["options"] = json.dumps(self._options)
-        return str(DisplayableBlocklyProblem.get_renderer(template_helper).box_blockly(blockly_dico))
+        return str(
+            template_helper.render("box_blockly.html", template_folder=PATH_TO_TEMPLATES,
+                                   blockly_dico=(blockly_dico)))
 
 
 def init(plugin_manager, course_factory, client, plugin_config):
-    # TODO: Replace by shared static middleware and let webserver serve the files
-    plugin_manager.add_page('/plugins/blockly/static/(.+)', StaticMockPage)
+    plugin_manager.add_page('/plugins/blockly/static/<path:path>', StaticMockPage.as_view('blocklystaticpage'))
     plugin_manager.add_hook("css", lambda: "/plugins/blockly/static/css/blockly.css")
     plugin_manager.add_hook("javascript_header", lambda: "/plugins/blockly/static/studio_blockly.js")
     plugin_manager.add_hook("javascript_header", lambda: "/plugins/blockly/static/task_blockly.js")

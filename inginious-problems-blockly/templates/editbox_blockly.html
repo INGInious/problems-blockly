@@ -1,9 +1,5 @@
-$def with (key)
-
-$#
-$# This file is part of INGInious. See the LICENSE and the COPYRIGHTS files for
-$# more information about the licensing of this file.
-$#
+{# This file is part of INGInious. See the LICENSE and the COPYRIGHTS files for more information about the licensing of this file.#}
+{% block content %}
 
 <div class="form-group row">
     <label for="header-PID" class="col-sm-2 control-label">Context</label>
@@ -165,13 +161,13 @@ $#
 
 <h4 class="text-center">Files (Interpreter, Visual execution)</h4>
 <div id="javascript_files-PID"></div>
-<button class="btn btn-info btn-sm btn-block" type="button" onclick="studio_create_$(key)_js_files('PID',{})" style="margin-bottom:30px;">
+<button class="btn btn-info btn-sm btn-block" type="button" onclick="studio_create_{{key}}_js_files('PID',{})" style="margin-bottom:30px;">
     <i class="fa fa-plus"></i> Add new file
 </button>
 
 <h4 class="text-center">Additional blocks files</h4>
 <div id="javascript_blocks_files-PID"></div>
-<button class="btn btn-info btn-sm btn-block" type="button" onclick="studio_create_$(key)_blocks_files('PID',{})" style="margin-bottom:30px;">
+<button class="btn btn-info btn-sm btn-block" type="button" onclick="studio_create_{{key}}_blocks_files('PID',{})" style="margin-bottom:30px;">
     <i class="fa fa-plus"></i> Add new file
 </button>
 
@@ -222,3 +218,5 @@ $#
         </div>
     </div>
 </div>
+
+{% endblock %}

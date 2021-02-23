@@ -1,11 +1,7 @@
-$def with (key)
+{# This file is part of INGInious. See the LICENSE and the COPYRIGHTS files for more information about the licensing of this file.#}
+{% block content %}
 
-$#
-$# This file is part of INGInious. See the LICENSE and the COPYRIGHTS files for
-$# more information about the licensing of this file.
-$#
-
-    <div id="subproblem_$(key)_visual" style="display:none;">
+    <div id="subproblem_{{key}}_visual" style="display:none;">
         <div class="form-group row">
             <label for="visualPosition-PID" class="col-sm-2 control-label">Position</label>
             <div class="col-sm-10">
@@ -16,7 +12,7 @@ $#
             </div>
         </div>
     </div>
-    <div id="subproblem_$(key)_grid" style="display:none;">
+    <div id="subproblem_{{key}}_grid" style="display:none;">
         <div class="form-group row">
             <label for="gridSpacing-PID" class="col-sm-2 control-label">Spacing</label>
             <div class="col-sm-10">
@@ -44,7 +40,7 @@ $#
             </div>
         </div>
     </div>
-    <div id="subproblem_$(key)_zoom" style="display:none;">
+    <div id="subproblem_{{key}}_zoom" style="display:none;">
         <div class="form-group row">
             <label for="zoomControls-PID" class="col-sm-2 control-label">Controls</label>
             <div class="col-sm-10">
@@ -86,7 +82,7 @@ $#
             </div>
         </div>
     </div>
-    <div id="subproblem_$(key)_files" style="display:none;">
+    <div id="subproblem_{{key}}_files" style="display:none;">
         <div class="form-group row">
             <label for="file-PID-INDEX" class="col-sm-2 control-label">File name</label>
                 <div class="col-sm-10">
@@ -102,26 +98,28 @@ $#
                 </div>
         </div>
     </div>
-    <div id="subproblem_$(key)_factory">
+    <div id="subproblem_{{key}}_factory">
         <div id="blocklyFactory"></div>
 
         <!-- Blockly official JavaScript -->
-        <script src="$get_homepath()/plugins/blockly/static/blockly/blockly_compressed.js" type="text/javascript" charset="utf-8"></script>
-        <script src="$get_homepath()/plugins/blockly/static/blockly/blocks_compressed.js" type="text/javascript" charset="utf-8"></script>
-        <script src="$get_homepath()/plugins/blockly/static/blockly/javascript_compressed.js" type="text/javascript" charset="utf-8"></script>
-        <script src="$get_homepath()/plugins/blockly/static/blockly/python_compressed.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blockly/blockly_compressed.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blockly/blocks_compressed.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blockly/javascript_compressed.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blockly/python_compressed.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Blockly French Translation -->
-        <script src="$get_homepath()/plugins/blockly/static/blockly/msg/js/fr.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blockly/msg/js/fr.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Blockly Factory js -->
-        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/bootstrapelement.js" charset="utf-8"></script>
-        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/factorycontroller.js" charset="utf-8"></script>
-        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/factory.js" charset="utf-8"></script>
-        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/factoryview.js" charset="utf-8"></script>
-        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/preview.js" charset="utf-8"></script>
-        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/toolboxfactory.js" charset="utf-8"></script>
-        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/toolbox.js" charset="utf-8"></script>
-        <script src="$get_homepath()/plugins/blockly/static/blocklyfactory/workspacefactory.js" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blocklyfactory/bootstrapelement.js" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blocklyfactory/factorycontroller.js" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blocklyfactory/factory.js" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blocklyfactory/factoryview.js" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blocklyfactory/preview.js" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blocklyfactory/toolboxfactory.js" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blocklyfactory/toolbox.js" charset="utf-8"></script>
+        <script src="{{get_homepath(True)}}/plugins/blockly/static/blocklyfactory/workspacefactory.js" charset="utf-8"></script>
 
     </div>
+
+{% endblock %}
