@@ -47,10 +47,10 @@
     </div>
     <div class="col-sm-9 row" id="blocklyAppLeft">
         <div id="blocklyAppWorkspace" class="col-sm-12" style="min-height:480px;">
-            <div id="blocklyDiv" data-pid='$blockly_dico["courseid"]' style="height:100%;"></div>
+            <div id="blocklyDiv" data-pid='{{blockly_dico["courseid"]}}' style="height:100%;"></div>
         </div>
         <div id="blocklyAppEditor" style="display:none;">
-            <textarea name='$blockly_dico["id"]' id="codeArea"
+            <textarea name='{{blockly_dico["id"]}}' id="codeArea"
             type="text"
             style="display:none;"
             data-x-language="python"
