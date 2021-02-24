@@ -1,13 +1,9 @@
-$def with (blockly_dico)
 
-$#
-$# This file is part of INGInious. See the LICENSE and the COPYRIGHTS files for
-$# more information about the licensing of this file.
-$#
-
+{# This file is part of INGInious. See the LICENSE and the COPYRIGHTS files for more information about the licensing of this file.#}
+{% block content %}
 <!-- Useful vars -->
 <script type="text/javascript">
-    var blocklyDico = $:blockly_dico;
+    var blocklyDico = {{blockly_dico | safe}};
     var taskid = blocklyDico["taskid"];
     var courseid = blocklyDico["courseid"];
     var filenames = blocklyDico["filenames"];
@@ -51,10 +47,10 @@ $#
     </div>
     <div class="col-sm-9 row" id="blocklyAppLeft">
         <div id="blocklyAppWorkspace" class="col-sm-12" style="min-height:480px;">
-            <div id="blocklyDiv" data-pid='$blockly_dico["courseid"]' style="height:100%;"></div>
+            <div id="blocklyDiv" data-pid='{{blockly_dico["courseid"]}}' style="height:100%;"></div>
         </div>
         <div id="blocklyAppEditor" style="display:none;">
-            <textarea name='$blockly_dico["id"]' id="codeArea"
+            <textarea name='{{blockly_dico["id"]}}' id="codeArea"
             type="text"
             style="display:none;"
             data-x-language="python"
@@ -68,7 +64,7 @@ $#
     <div class="modal-dialog" style="min-width: 98%;">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">$blockly_dico["name"]</h4>
+                <h4 class="modal-title">{{blockly_dico["name"]}}</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div id="blocklyModalBody" class="modal-body">
@@ -99,20 +95,23 @@ $#
 ></textarea>
 
 <!-- Blockly official JavaScript -->
-<script src="$get_homepath()/plugins/blockly/static/blockly/blockly_compressed.js" type="text/javascript" charset="utf-8"></script>
-<script src="$get_homepath()/plugins/blockly/static/blockly/blocks_compressed.js" type="text/javascript" charset="utf-8"></script>
-<script src="$get_homepath()/plugins/blockly/static/blockly/python_compressed.js" type="text/javascript" charset="utf-8"></script>
-<script src="$get_homepath()/plugins/blockly/static/blockly/javascript_compressed.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{get_homepath()}}/plugins/blockly/static/blockly/blockly_compressed.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{get_homepath()}}/plugins/blockly/static/blockly/blocks_compressed.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{get_homepath()}}/plugins/blockly/static/blockly/python_compressed.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{get_homepath()}}/plugins/blockly/static/blockly/javascript_compressed.js" type="text/javascript" charset="utf-8"></script>
 
 <!-- Blockly English Translation -->
-<script src="$get_homepath()/plugins/blockly/static/blockly/msg/js/en.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{get_homepath()}}/plugins/blockly/static/blockly/msg/js/en.js" type="text/javascript" charset="utf-8"></script>
 
-$if blockly_dico["filenames"] is not None:
-    $for filename in blockly_dico["filenames"]:
-        <script src="$get_homepath()/course/$blockly_dico['courseid']/$blockly_dico['taskid']/$filename" type="text/javascript" charset="utf-8"></script>
-
+{% if blockly_dico["filenames"] is not none %}
+    {% for filename in blockly_dico["filenames"]%}
+        <script src="{{get_homepath()}}/course/{{blockly_dico['courseid']}}/{{blockly_dico['taskid']}}/{{filename}}" type="text/javascript" charset="utf-8"></script>
+    {% endfor %}
+{% endif %}
 <!-- Local JavaScript -->
-<script src="$get_homepath()/plugins/blockly/static/blockly/blockly.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{get_homepath()}}/plugins/blockly/static/blockly/blockly.js" type="text/javascript" charset="utf-8"></script>
 
 <!-- JS Interpreter to run code locally -->
-<script src="$get_homepath()/plugins/blockly/static/JS-Interpreter/acorn_interpreter.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{get_homepath()}}/plugins/blockly/static/JS-Interpreter/acorn_interpreter.js" type="text/javascript" charset="utf-8"></script>
+
+{% endblock %}
