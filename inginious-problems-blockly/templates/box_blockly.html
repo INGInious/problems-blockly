@@ -12,25 +12,25 @@
 
 <div id="blocklyInterpreterAlert" class="alert alert-danger" style="display:none;">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <strong>Erreur d'exécution</strong> <p id="blocklyInterpreterAlertText"></p>
+  <strong>{{ gettext("Erreur d'exécution") }}</strong> <p id="blocklyInterpreterAlertText"></p>
 </div>
 
 <!-- Workspace on the page -->
 <div id="blocklyButtonsRow" class="row mb-3">
     <div id="blocklyButtons" class="col-sm-8">
-        <button id="playButton" type="button" class="btn btn-success" style="border-radius:10px;"><span class="fa fa-fw fa-play"></span> Run code</button>
-        <button id="stopButton" type="button" class="btn btn-danger" style="display:none;border-radius:10px;"><span class="fa fa-fw fa-stop"></span> Stop</button>
-        <button id="resetButton" type="button" class="btn btn-danger" style="display:none;border-radius:10px;"><span class="fa fa-fw fa-refresh"></span> Restart</button>
+        <button id="playButton" type="button" class="btn btn-success" style="border-radius:10px;"><span class="fa fa-fw fa-play"></span> {{ gettext('Run code') }}</button>
+        <button id="stopButton" type="button" class="btn btn-danger" style="display:none;border-radius:10px;"><span class="fa fa-fw fa-stop"></span>  {{ gettext('Stop') }}</button>
+        <button id="resetButton" type="button" class="btn btn-danger" style="display:none;border-radius:10px;"><span class="fa fa-fw fa-refresh"></span> {{ gettext('Restart') }}</button>
         <div class="btn-group ml-2 mr-2">
-            <button id="blockModeButtons" type="button" class="btn btn-secondary active"><span class="fa fa-fw fa-th-large"></span> Blocks</button>
-            <button id="splitModeButtons" type="button" class="btn btn-secondary"><span class="fa fa-fw fa-arrows-h"></span> Split</button>
+            <button id="blockModeButtons" type="button" class="btn btn-secondary active"><span class="fa fa-fw fa-th-large"></span> {{ gettext('Blocks') }}</button>
+            <button id="splitModeButtons" type="button" class="btn btn-secondary"><span class="fa fa-fw fa-arrows-h"></span> {{ gettext('Split') }}</button>
             <button id="textModeButtons" type="button" class="btn btn-secondary"><span class="fa fa-fw fa-pencil"></span> Text</button>
         </div>
-        <button type="button" id="buttonFullscreen" disabled="true" class="btn btn-secondary" data-toggle="modal" data-target="#blocklyModal" style="border-radius:10px;"><span class="fa fa-fw fa-window-maximize"></span> Toggle full screen</button>
+        <button type="button" id="buttonFullscreen" disabled="true" class="btn btn-secondary" data-toggle="modal" data-target="#blocklyModal" style="border-radius:10px;"><span class="fa fa-fw fa-window-maximize"></span> {{ gettext('Toggle full screen') }}</button>
         <input type="range" min="1" max="100" step="5" id="slider"  class="form-range">
     </div>
     <div id="blocklyBlocksText" class="col-sm-4 text-right" style="margin-top:10px;">
-        <p id="blocksLimitText" class="text-info pr-4">You have <b id="blocksLimitNumber"></b> block(s) left.</p>
+        <p id="blocksLimitText" class="text-info pr-4"> {{ gettext('You have')}} <b id="blocksLimitNumber"></b>  {{ gettext('block(s) left.') }}</p>
     </div>
 </div>
 
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"> {{ gettext('Close') }}</button>
             </div>
         </div>
     </div>
@@ -101,8 +101,8 @@
 <script src="{{get_homepath()}}/plugins/blockly/static/blockly/python_compressed.js" type="text/javascript" charset="utf-8"></script>
 <script src="{{get_homepath()}}/plugins/blockly/static/blockly/javascript_compressed.js" type="text/javascript" charset="utf-8"></script>
 
-<!-- Blockly English Translation -->
-<script src="{{get_homepath()}}/plugins/blockly/static/blockly/msg/js/en.js" type="text/javascript" charset="utf-8"></script>
+<!-- Blockly Language Translation -->
+<script src="{{get_homepath()}}/plugins/blockly/static/blockly/msg/js/{{user_manager.session_language()}}.js" type="text/javascript" charset="utf-8"></script>
 
 {% if blockly_dico["filenames"] is not none %}
     {% for filename in blockly_dico["filenames"]%}

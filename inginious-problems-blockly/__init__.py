@@ -4,6 +4,7 @@
 # more information about the licensing of this file.
 
 import os
+import gettext
 from flask import send_from_directory
 import json
 
@@ -13,8 +14,9 @@ from inginious.frontend.task_problems import DisplayableProblem
 
 __version__ = "0.1.dev0"
 
-PATH_TO_PLUGIN = os.path.abspath(os.path.dirname(__file__))
+PATH_TO_PLUGIN = os.path.dirname(os.path.abspath(__file__))
 PATH_TO_TEMPLATES = os.path.join(PATH_TO_PLUGIN, "templates")
+_translations = None
 
 
 class StaticMockPage(INGIniousPage):
@@ -116,11 +118,13 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
 
     @classmethod
     def show_editbox(self, template_helper, key, language):
-        return template_helper.render("editbox_blockly.html", template_folder=PATH_TO_TEMPLATES, key=key)
+        translation = _translations.get(language, gettext.NullTranslations())
+        return template_helper.render("editbox_blockly.html", gettext=translation.gettext, template_folder=PATH_TO_TEMPLATES, key=key)
 
     @classmethod
     def show_editbox_templates(cls, template_helper, key, language):
-        return template_helper.render("editbox_blockly_templates.html", template_folder=PATH_TO_TEMPLATES, key=key)
+        translation = _translations.get(language, gettext.NullTranslations())
+        return template_helper.render("editbox_blockly_templates.html", gettext=translation.gettext, template_folder=PATH_TO_TEMPLATES, key=key)
 
     @classmethod
     def get_type_name(self, language):
@@ -144,14 +148,24 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         blockly_dico["workspace"] = self._workspace
         blockly_dico["name"] = self.get_name()
         blockly_dico["options"] = json.dumps(self._options)
+        translation = _translations.get(language, gettext.NullTranslations())
         return str(
             template_helper.render("box_blockly.html", template_folder=PATH_TO_TEMPLATES,
-                                   blockly_dico=(blockly_dico)))
+                                   blockly_dico=(blockly_dico),
+                                   gettext=translation.gettext
+                                   ))
 
 
 def init(plugin_manager, course_factory, client, plugin_config):
+    global _translations
     plugin_manager.add_page('/plugins/blockly/static/<path:path>', StaticMockPage.as_view('blocklystaticpage'))
     plugin_manager.add_hook("css", lambda: "/plugins/blockly/static/css/blockly.css")
     plugin_manager.add_hook("javascript_header", lambda: "/plugins/blockly/static/studio_blockly.js")
     plugin_manager.add_hook("javascript_header", lambda: "/plugins/blockly/static/task_blockly.js")
     course_factory.get_task_factory().add_problem_type(DisplayableBlocklyProblem)
+
+    # Init gettext
+    languages = ["en", "fr"]
+    _translations = {
+         lang: gettext.translation('messages', PATH_TO_PLUGIN + '/i18n', [lang]) for lang in languages
+    }

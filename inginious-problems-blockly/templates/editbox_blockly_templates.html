@@ -3,36 +3,36 @@
 
     <div id="subproblem_{{key}}_visual" style="display:none;">
         <div class="form-group row">
-            <label for="visualPosition-PID" class="col-sm-2 control-label">Position</label>
+            <label for="visualPosition-PID" class="col-sm-2 control-label">{{ gettext('Position') }}</label>
             <div class="col-sm-10">
                 <select class="form-control" id="visualPosition-PID" name="problem[PID][options][visual][position]">
-                    <option value="left">left</option>
-                    <option value="right">right</option>
+                    <option value="left">{{ gettext('left') }}</option>
+                    <option value="right">{{ gettext('right') }}</option>
                 </select>
             </div>
         </div>
     </div>
     <div id="subproblem_{{key}}_grid" style="display:none;">
         <div class="form-group row">
-            <label for="gridSpacing-PID" class="col-sm-2 control-label">Spacing</label>
+            <label for="gridSpacing-PID" class="col-sm-2 control-label">{{ gettext('Spacing') }}</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="gridSpacing-PID" name="problem[PID][options][grid][spacing]" placeholder="Default is 20"/>
             </div>
         </div>
         <div class="form-group row">
-            <label for="gridLength-PID" class="col-sm-2 control-label">Length</label>
+            <label for="gridLength-PID" class="col-sm-2 control-label">{{ gettext('Length') }}</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="gridLength-PID" name="problem[PID][options][grid][length]" placeholder="Default is 3"/>
             </div>
         </div>
         <div class="form-group row">
-            <label for="gridColour-PID" class="col-sm-2 control-label">Colour</label>
+            <label for="gridColour-PID" class="col-sm-2 control-label">{{ gettext('Colour') }}</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="gridColour-PID" name="problem[PID][options][grid][colour]" placeholder="Default is #ccc"/>
             </div>
         </div>
         <div class="form-group row">
-            <label for="gridSnap-PID" class="col-sm-2 control-label">Snap</label>
+            <label for="gridSnap-PID" class="col-sm-2 control-label">{{ gettext('Snap') }}</label>
             <div class="col-sm-10">
                 <div class="checkbox"><label>
                     <input type="checkbox" id="gridSnap-PID" name="problem[PID][options][grid][snap]"/>&nbsp;
@@ -42,7 +42,7 @@
     </div>
     <div id="subproblem_{{key}}_zoom" style="display:none;">
         <div class="form-group row">
-            <label for="zoomControls-PID" class="col-sm-2 control-label">Controls</label>
+            <label for="zoomControls-PID" class="col-sm-2 control-label">{{ gettext('Controls') }}</label>
             <div class="col-sm-10">
                 <div class="checkbox"><label>
                     <input type="checkbox" id="zoomControls-PID" name="problem[PID][options][zoom][controls]"/>&nbsp;
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="zoomWheel-PID" class="col-sm-2 control-label">Wheel</label>
+            <label for="zoomWheel-PID" class="col-sm-2 control-label">{{ gettext('Wheel') }}</label>
             <div class="col-sm-10">
                 <div class="checkbox"><label>
                     <input type="checkbox" id="zoomWheel-PID" name="problem[PID][options][zoom][wheel]"/>&nbsp;
@@ -58,25 +58,25 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="zoomStartScale-PID" class="col-sm-2 control-label">Start scale</label>
+            <label for="zoomStartScale-PID" class="col-sm-2 control-label">{{ gettext('Start scale') }}</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="zoomStartScale-PID" name="problem[PID][options][zoom][startScale]" placeholder="Default is 1"/>
             </div>
         </div>
         <div class="form-group row">
-            <label for="zoomMaxScale-PID" class="col-sm-2 control-label">Max scale</label>
+            <label for="zoomMaxScale-PID" class="col-sm-2 control-label">{{ gettext('Max scale') }}</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="zoomMaxScale-PID" name="problem[PID][options][zoom][maxScale]" placeholder="Default is 3"/>
             </div>
         </div>
         <div class="form-group row">
-            <label for="zoomMinScale-PID" class="col-sm-2 control-label">Min scale</label>
+            <label for="zoomMinScale-PID" class="col-sm-2 control-label">{{ gettext('Min scale') }}</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="zoomMinScale-PID" name="problem[PID][options][zoom][minScale]" placeholder="Default is 0.3"/>
             </div>
         </div>
         <div class="form-group row">
-            <label for="zoomScaleSpeed-PID" class="col-sm-2 control-label">Scale speed</label>
+            <label for="zoomScaleSpeed-PID" class="col-sm-2 control-label">{{ gettext('Scale speed') }}</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="zoomScaleSpeed-PID" name="problem[PID][options][zoom][scaleSpeed]" placeholder="Default is 1.2"/>
             </div>
@@ -84,7 +84,7 @@
     </div>
     <div id="subproblem_{{key}}_files" style="display:none;">
         <div class="form-group row">
-            <label for="file-PID-INDEX" class="col-sm-2 control-label">File name</label>
+            <label for="file-PID-INDEX" class="col-sm-2 control-label">{{ gettext('File name') }}</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="file-PID-INDEX" name="problem[PID][files][INDEX]" placeholder="Name of the file"/>
                 </div>
@@ -92,7 +92,7 @@
     </div>
     <div id="subproblem_blocks_files" style="display:none;">
         <div class="form-group row">
-            <label for="file-PID-INDEX" class="col-sm-2 control-label">File name</label>
+            <label for="file-PID-INDEX" class="col-sm-2 control-label">{{ gettext('File name') }}</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="file-PID-INDEX" name="problem[PID][blocks_files][INDEX]" placeholder="Name of the file"/>
                 </div>

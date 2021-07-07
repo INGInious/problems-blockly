@@ -1,0 +1,230 @@
+# English translations for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-09-06 11:46+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: inginious-problems-blockly/templates/box_blockly.html:15
+msgid "Erreur d'exécution"
+msgstr "Execution error"
+
+#: inginious-problems-blockly/templates/box_blockly.html:21
+msgid "Run code"
+msgstr ""
+
+#: inginious-problems-blockly/templates/box_blockly.html:22
+msgid "Stop"
+msgstr ""
+
+#: inginious-problems-blockly/templates/box_blockly.html:23
+msgid "Restart"
+msgstr ""
+
+#: inginious-problems-blockly/templates/box_blockly.html:25
+msgid "Blocks"
+msgstr ""
+
+#: inginious-problems-blockly/templates/box_blockly.html:26
+msgid "Split"
+msgstr ""
+
+#: inginious-problems-blockly/templates/box_blockly.html:29
+msgid "Toggle full screen"
+msgstr ""
+
+#: inginious-problems-blockly/templates/box_blockly.html:32
+msgid "You have"
+msgstr ""
+
+#: inginious-problems-blockly/templates/box_blockly.html:32
+msgid "block(s) left."
+msgstr ""
+
+#: inginious-problems-blockly/templates/box_blockly.html:85
+#: inginious-problems-blockly/templates/editbox_blockly.html:216
+msgid "Close"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:5
+msgid "Context"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:14
+msgid "Workspace Options"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:20
+msgid "Visual problem"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:28
+msgid "Can collapse blocks"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:36
+msgid "Can comment blocks"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:44
+msgid "Can disable blocks"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:52
+msgid "Max number of blocks"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:58
+msgid "Timeout between animations"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:64
+msgid "Use trashcan"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:72
+msgid "Use horizontal layout"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:80
+msgid "Toolbox position"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:86
+msgid "Media path"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:92
+msgid "Use blockly css"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:101
+msgid "Display grid"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:110
+msgid "Zoom"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:118
+msgid "Right-to-left"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:126
+msgid "Read only"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:134
+msgid "1-based index"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:142
+msgid "Scrollbars"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:150
+msgid "Sounds"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:162
+msgid "Files (Interpreter, Visual execution)"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:168
+msgid "Additional blocks files"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:176
+msgid "Edit toolbox XML"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:181
+msgid "Toolbox"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:189
+msgid "Edit workspace XML"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:194
+msgid "Workspace"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:202
+msgid "Edit toolbox/workspace graphically"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:210
+msgid "Blockly Factory"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:6
+msgid "Position"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:9
+msgid "left"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:10
+msgid "right"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:17
+msgid "Spacing"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:23
+msgid "Length"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:29
+msgid "Colour"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:35
+msgid "Snap"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:45
+msgid "Controls"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:53
+msgid "Wheel"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:61
+msgid "Start scale"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:67
+msgid "Max scale"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:73
+msgid "Min scale"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:79
+msgid "Scale speed"
+msgstr ""
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:87
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:95
+msgid "File name"
+msgstr ""
+

@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="form-group row">
-    <label for="header-PID" class="col-sm-2 control-label">Context</label>
+    <label for="header-PID" class="col-sm-2 control-label"> {{ gettext('Context') }}</label>
     <div class="col-sm-10">
         <textarea id="header-PID" class="form-control" name="problem[PID][header]"></textarea>
     </div>
@@ -11,13 +11,13 @@
   <div class="card mb-3">
     <div class="card-header" id="headingWorkspace">
         <div style="cursor: pointer" data-toggle="collapse" data-parent="#workspaceAccordion" data-target="#collapseWorkspace" href="#course_desc" aria-expanded="false" aria-controls="collapseWorkspace">
-            Workspace Options
+             {{ gettext('Workspace Options') }}
         </div>
     </div>
     <div id="collapseWorkspace" class="collapse" aria-labelledby="headingWorkspace" data-parent="#workspaceAccordion">
       <div class="card-body">
           <div class="form-group row">
-              <label for="visual-PID" class="col-sm-2 control-label">Visual problem</label>
+              <label for="visual-PID" class="col-sm-2 control-label">{{ gettext('Visual problem') }}</label>
               <div class="col-sm-10">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="visual-PID" name="problem[PID][options][visual]"/>&nbsp;</label>
@@ -25,7 +25,7 @@
               </div>
           </div>
           <div class="form-group row">
-              <label for="collapse-PID" class="col-sm-2 control-label">Can collapse blocks <a title="collapses blocks"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <label for="collapse-PID" class="col-sm-2 control-label"> {{ gettext('Can collapse blocks') }} <a title="collapses blocks"><span class="glyphicon glyphicon-question-sign"></span></a></label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="collapse-PID" name="problem[PID][options][collapse]"/>&nbsp;
@@ -33,7 +33,7 @@
               </div>
           </div>
           <div class="form-group row">
-              <label for="comments-PID" class="col-sm-2 control-label">Can comment blocks</label>
+              <label for="comments-PID" class="col-sm-2 control-label">{{ gettext('Can comment blocks') }}</label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="comments-PID" name="problem[PID][options][comments]"/>&nbsp;
@@ -41,7 +41,7 @@
               </div>
           </div>
           <div class="form-group row">
-              <label for="disable-PID" class="col-sm-2 control-label">Can disable blocks</label>
+              <label for="disable-PID" class="col-sm-2 control-label"> {{ gettext('Can disable blocks') }}</label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="disable-PID" name="problem[PID][options][disable]"/>&nbsp;
@@ -49,19 +49,19 @@
               </div>
           </div>
           <div class="form-group row">
-              <label for="maxBlocks-PID" class="col-sm-2 control-label">Max number of blocks <a title="The number must be either a positive integer or Infinity"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <label for="maxBlocks-PID" class="col-sm-2 control-label">{{ gettext('Max number of blocks') }} <a title="The number must be either a positive integer or Infinity"><span class="glyphicon glyphicon-question-sign"></span></a></label>
               <div class="col-sm-8">
                   <input type="text" class="form-control" id="maxBlocks-PID" name="problem[PID][options][maxBlocks]" placeholder="0,1,...,Infinity"/>
               </div>
           </div>
           <div class="form-group row">
-              <label for="speed-PID" class="col-sm-2 control-label">Timeout between animations <a title="Timeout between animations in ms"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <label for="speed-PID" class="col-sm-2 control-label"> {{ gettext('Timeout between animations') }} <a title="Timeout between animations in ms"><span class="glyphicon glyphicon-question-sign"></span></a></label>
               <div class="col-sm-8">
                   <input type="text" class="form-control" id="speed-PID" name="problem[PID][options][speed]" placeholder="default is 60"/>
               </div>
           </div>
           <div class="form-group row">
-              <label for="trashcan-PID" class="col-sm-2 control-label">Use trashcan</label>
+              <label for="trashcan-PID" class="col-sm-2 control-label"> {{ gettext('Use trashcan') }}</label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="trashcan-PID" name="problem[PID][options][trashcan]"/>&nbsp;
@@ -69,7 +69,7 @@
               </div>
           </div>
           <div class="form-group row">
-              <label for="horizontalLayout-PID" class="col-sm-2 control-label">Use horizontal layout <a title="Change the layout from vertical to horizontal"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <label for="horizontalLayout-PID" class="col-sm-2 control-label">{{ gettext('Use horizontal layout') }} <a title="Change the layout from vertical to horizontal"><span class="glyphicon glyphicon-question-sign"></span></a></label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="horizontalLayout-PID" name="problem[PID][options][horizontalLayout]"/>&nbsp;
@@ -77,19 +77,19 @@
               </div>
           </div>
           <div class="form-group row">
-              <label for="toolboxPosition-PID" class="col-sm-2 control-label">Toolbox position <a title="The toolbox position must be start or end"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <label for="toolboxPosition-PID" class="col-sm-2 control-label"> {{ gettext('Toolbox position') }} <a title="The toolbox position must be start or end"><span class="glyphicon glyphicon-question-sign"></span></a></label>
               <div class="col-sm-8">
                   <input type="text" class="form-control" id="toolboxPosition-PID" name="problem[PID][options][toolboxPosition]" placeholder="start or end"/>
               </div>
           </div>
           <div class="form-group row">
-              <label for="media-PID" class="col-sm-2 control-label">Media path <a title="Path to the directory with pictures and sounds for Blockly"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <label for="media-PID" class="col-sm-2 control-label">{{ gettext('Media path') }} <a title="Path to the directory with pictures and sounds for Blockly"><span class="glyphicon glyphicon-question-sign"></span></a></label>
               <div class="col-sm-8">
                   <input type="text" class="form-control" id="media-PID" name="problem[PID][options][media]" placeholder="media: /plugins/blockly/static/blockly/media/"/>
               </div>
           </div>
           <div class="form-group row">
-              <label for="css-PID" class="col-sm-2 control-label">Use blockly css</label>
+              <label for="css-PID" class="col-sm-2 control-label">{{ gettext('Use blockly css') }}</label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="css-PID" name="problem[PID][options][css]"/>&nbsp;
@@ -98,7 +98,7 @@
           </div>
           <div class="form-group row">
               <!-- Be carefum studio.js exactly needs this structure -->
-              <label for="grid-PID" class="col-sm-2 control-label">Display grid</label>
+              <label for="grid-PID" class="col-sm-2 control-label">{{ gettext('Display grid') }}</label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="grid-PID" name="problem[PID][options][grid]"/>&nbsp;
@@ -107,7 +107,7 @@
           </div>
           <div class="form-group row">
               <!-- Be carefum studio.js exactly needs this structure -->
-              <label for="zoom-PID" class="col-sm-2 control-label">Zoom</label>
+              <label for="zoom-PID" class="col-sm-2 control-label"> {{ gettext('Zoom') }}</label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="zoom-PID" name="problem[PID][options][zoom]"/>&nbsp;
@@ -115,7 +115,7 @@
               </div>
           </div>
           <div class="form-group row">
-              <label for="rtl-PID" class="col-sm-2 control-label">Right-to-left</label>
+              <label for="rtl-PID" class="col-sm-2 control-label">{{ gettext('Right-to-left') }}</label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="rtl-PID" name="problem[PID][options][rtl]"/>&nbsp;
@@ -123,7 +123,7 @@
               </div>
           </div>
           <div class="form-group row">
-              <label for="readOnly-PID" class="col-sm-2 control-label">Read only</label>
+              <label for="readOnly-PID" class="col-sm-2 control-label">{{ gettext('Read only') }}</label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="readOnly-PID" name="problem[PID][options][readOnly]"/>&nbsp;
@@ -131,7 +131,7 @@
               </div>
           </div>
           <div class="form-group row">
-              <label for="oneBasedIndex-PID" class="col-sm-2 control-label">1-based index <a title="Do something"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <label for="oneBasedIndex-PID" class="col-sm-2 control-label">{{ gettext('1-based index') }} <a title="Do something"><span class="glyphicon glyphicon-question-sign"></span></a></label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="oneBasedIndex-PID" name="problem[PID][options][oneBasedIndex]"/>&nbsp;
@@ -139,7 +139,7 @@
               </div>
           </div>
           <div class="form-group row">
-              <label for="scrollbars-PID" class="col-sm-2 control-label">Scrollbars </label>
+              <label for="scrollbars-PID" class="col-sm-2 control-label">{{ gettext('Scrollbars') }}</label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="scrollbars-PID" name="problem[PID][options][scrollbars]"/>&nbsp;
@@ -147,7 +147,7 @@
               </div>
           </div>
           <div class="form-group row">
-              <label for="sounds-PID" class="col-sm-2 control-label">Sounds <a title="Allow sound utilisation"><span class="glyphicon glyphicon-question-sign"></span></a></label>
+              <label for="sounds-PID" class="col-sm-2 control-label">{{ gettext('Sounds') }} <a title="Allow sound utilisation"><span class="glyphicon glyphicon-question-sign"></span></a></label>
               <div class="col-sm-8">
                   <div class="checkbox"><label>
                       <input type="checkbox" id="sounds-PID" name="problem[PID][options][sounds]"/>&nbsp;
@@ -159,13 +159,13 @@
   </div>
 </div>
 
-<h4 class="text-center">Files (Interpreter, Visual execution)</h4>
+<h4 class="text-center"> {{ gettext('Files (Interpreter, Visual execution)') }}</h4>
 <div id="javascript_files-PID"></div>
 <button class="btn btn-info btn-sm btn-block" type="button" onclick="studio_create_{{key}}_js_files('PID',{})" style="margin-bottom:30px;">
     <i class="fa fa-plus"></i> Add new file
 </button>
 
-<h4 class="text-center">Additional blocks files</h4>
+<h4 class="text-center"> {{ gettext('Additional blocks files') }}</h4>
 <div id="javascript_blocks_files-PID"></div>
 <button class="btn btn-info btn-sm btn-block" type="button" onclick="studio_create_{{key}}_blocks_files('PID',{})" style="margin-bottom:30px;">
     <i class="fa fa-plus"></i> Add new file
@@ -173,12 +173,12 @@
 
 
 <button type="button" class="btn btn-warning btn-sm btn-block mb-3" data-toggle="collapse" data-target="#blocklyToolboxCollapse">
-    <span class="fa fa-fw fa-pencil"></span> Edit toolbox XML
+    <span class="fa fa-fw fa-pencil"></span>  {{ gettext('Edit toolbox XML') }}
 </button>
 
 <div id="blocklyToolboxCollapse" class="collapse">
     <div class="form-group row">
-        <label for="toolbox-PID" class="col-sm-2 control-label">Toolbox</label>
+        <label for="toolbox-PID" class="col-sm-2 control-label">{{ gettext('Toolbox') }}</label>
         <div class="col-sm-10">
             <textarea id="toolbox-PID" class="form-control" name="problem[PID][toolbox]"></textarea>
         </div>
@@ -186,12 +186,12 @@
 </div>
 
 <button type="button" class="btn btn-warning btn-sm btn-block mb-3" data-toggle="collapse" data-target="#blocklyWorkspaceCollapse">
-    <span class="fa fa-fw fa-pencil"></span> Edit workspace XML
+    <span class="fa fa-fw fa-pencil"></span> {{ gettext('Edit workspace XML') }}
 </button>
 
 <div id="blocklyWorkspaceCollapse" class="collapse">
     <div class="form-group row">
-        <label for="workspace-PID" class="col-sm-2 control-label">Workspace</label>
+        <label for="workspace-PID" class="col-sm-2 control-label">{{ gettext('Workspace') }}</label>
         <div class="col-sm-10">
             <textarea id="workspace-PID" class="form-control" name="problem[PID][workspace]"></textarea>
         </div>
@@ -199,7 +199,7 @@
 </div>
 
 <button class="btn btn-info btn-sm btn-block" type="button" name="button" data-toggle="modal" data-target="#blockFactoryModal">
-    <span class="fa fa-fw fa-window-restore"></span> Edit toolbox/workspace graphically
+    <span class="fa fa-fw fa-window-restore"></span> {{ gettext('Edit toolbox/workspace graphically') }}
 </button>
 
 
@@ -207,13 +207,13 @@
     <div class="modal-dialog" style="min-width: 98%;">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Blockly Factory</h4>
+                <h4 class="modal-title">{{ gettext('Blockly Factory') }}</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div id="blockFactoryModalBody" class="modal-body" style="height:80vh;">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ gettext('Close') }}</button>
             </div>
         </div>
     </div>
