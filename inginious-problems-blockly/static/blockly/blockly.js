@@ -23,6 +23,7 @@ BlocklyTask = function(options, toolbox, workspaceBlocks) {
     this.blockModeButton = $("#blockModeButtons"); // button to show only the workspace
     this.splitModeButton = $("#splitModeButtons"); // button to show workspace + code
     this.textModeButton = $("#textModeButtons"); // button to show only the code
+    this.sliderButton = $("#slider");
     this.blocksLimitText = $("#blocksLimitText"); // text to display the block limit
     this.blocksLimitNumber = $("#blocksLimitNumber"); // text to display the remaining amount of blocks
     this.blocklyApp = $("#blocklyApp");
@@ -130,24 +131,39 @@ BlocklyTask.prototype.injectWorkspace = function(blocklyDiv, options, workspaceB
 BlocklyTask.prototype.addButtonsListeners = function() {
     var self = this;
     this.playButton.on('click.simple', function() {
+        $("#slider").prop( "disabled", true );
         self.playButton.hide();
         self.stopButton.show();
         self.executeCode();
     });
 
     this.stopButton.on('click.simple', function() {
+        $("#slider").prop( "disabled", false );
         self.stopButton.hide();
         self.resetButton.show();
         self.stopCodeExecution();
     });
 
     this.resetButton.on('click.simple', function() {
+        $("#slider").prop( "disabled", false );
         self.resetButton.hide();
         self.playButton.show();
         if (typeof Maze !== "undefined" && typeof Maze.reset !== "undefined") {
             Maze.reset(false);
         }
     });
+
+    this.sliderButton.on('input', function() {
+        //reset speed
+        window.stepSpeed = json.map.animationSpeed;
+        // apply value of range [1-100]
+        // as stepspeed is milliseconds the less it is, the speedest it is.
+        // so a big range has to be reversed to represent the fast way.
+        let reversed_value = (100 - this.value + 1)*10;
+        window.stepSpeed = reversed_value;
+
+    });
+
     /* Link mode to their actions */
     this.blockModeButton.on('click.simple', function() {
         self.splitModeButton.removeClass("active");
