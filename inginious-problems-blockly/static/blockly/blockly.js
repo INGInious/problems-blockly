@@ -22,6 +22,8 @@ BlocklyTask = function(options, toolbox, workspaceBlocks) {
     this.resetButton = $("#resetButton"); // reset the task
     this.blockModeButton = $("#blockModeButtons"); // button to show only the workspace
     this.splitModeButton = $("#splitModeButtons"); // button to show workspace + code
+    this.copyButton = $('#copyButton');
+    this.pasteButton = $('#pasteButton');
     this.textModeButton = $("#textModeButtons"); // button to show only the code
     this.sliderButton = $("#slider");
     this.blocksLimitText = $("#blocksLimitText"); // text to display the block limit
@@ -183,7 +185,54 @@ BlocklyTask.prototype.addButtonsListeners = function() {
         $(this).addClass("active");
         self.onTextMode();
     });
+    this.copyButton.on('click.simple', function(){
+        var workspace = Blockly.getMainWorkspace();
+        var xml = Blockly.Xml.workspaceToDom(workspace);
+        var xml_text = Blockly.Xml.domToText(xml);
+        navigator.clipboard.writeText(xml_text).then(function() {
+            /* clipboard successfully set */
+            console.log("Successfully copy to clipboard.");
+          }, function() {
+            /* clipboard write failed */
+            console.log("Something went wrong while copying to clipboard.");
+          });
+    });
+
+    this.pasteButton.on('click.simple', function(){
+        var workspace = Blockly.getMainWorkspace();
+        navigator.clipboard.readText().then(clipText => {
+            var list_type_block = _get_types_xml(clipText);
+            var list_type_toolbox = _get_types_xml(blocklyDico["toolbox"]);
+            var all_in_toolbox = true;
+            for(var block in list_type_block){
+                if(list_type_block[block] == "start_block"){
+                    // skip this block
+                }else if(!(list_type_toolbox.includes(list_type_block[block]))){
+                    all_in_toolbox = false;
+                }
+            }
+            if(all_in_toolbox){
+                Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(clipText), workspace);
+            }else{
+                alert("un bloc copié n'est pas dans la toolbox");
+            }
+        }
+        );
+    });
 };
+
+function _get_types_xml(content){
+    var list_type_block = [];
+    var parser = new DOMParser();
+    var xmlDoc = parser.parseFromString(content,"text/xml");
+    var tab_element = xmlDoc.getElementsByTagName("block");
+    for (var id in tab_element){
+        if(typeof(tab_element[id]) == "object"){
+            list_type_block.push(tab_element[id].getAttribute("type"));
+        }
+    }
+    return list_type_block;
+}
 
 /**
  * Unlink all buttons from the actions linked by addButtonsListeners()

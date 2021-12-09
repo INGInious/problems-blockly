@@ -28,6 +28,9 @@
         </div>
         <button type="button" id="buttonFullscreen" disabled="true" class="btn btn-secondary" data-toggle="modal" data-target="#blocklyModal" style="border-radius:10px;"><span class="fa fa-fw fa-window-maximize"></span> {{ gettext('Toggle full screen') }}</button>
         <input type="range" min="1" max="100" step="5" id="slider"  class="form-range">
+        <button type="button" id="copyButton" name="copyButton" class="btn btn-secondary"> {{ gettext('Copy to clipboard') }}</button>
+        <button type="button" id="pasteButton" name="pasteButton" class="btn btn-secondary"> {{ gettext('Paste from clipboard') }}</button>
+
     </div>
     <div id="blocklyBlocksText" class="col-sm-4 text-right" style="margin-top:10px;">
         <p id="blocksLimitText" class="text-info pr-4"> {{ gettext('You have')}} <b id="blocksLimitNumber"></b>  {{ gettext('block(s) left.') }}</p>
