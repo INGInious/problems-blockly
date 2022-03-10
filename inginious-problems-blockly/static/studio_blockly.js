@@ -10,7 +10,6 @@ function studio_init_template_blockly(well, pid, problem) {
 
     var toolboxEditor = registerCodeEditor($('#toolbox-' + pid)[0], 'xml', 10);
     toolboxEditor.setValue("toolbox" in problem ? problem.toolbox : "<xml></xml>");
-
     var workspaceEditor = registerCodeEditor($('#workspace-' + pid)[0], 'xml', 10);
     workspaceEditor.setValue("workspace" in problem ? problem.workspace : "<xml></xml>");
 
@@ -113,6 +112,10 @@ function workspace_options(pid, options){
     $("#media-" + pid).val("media" in options ? options.media : "plugins/blockly/static/blockly/media/");
     $("#oneBasedIndex-" + pid).prop('checked', "oneBasedIndex" in options ? options.oneBasedIndex : false);
     $("#readOnly-" + pid).prop('checked', "readOnly" in options ? options.readOnly : false);
+    $("#use_start_block-" + pid).prop('checked', "use_start_block" in options ? options.use_start_block : false);
+    $("#use_slider-" + pid).prop('checked', "use_slider" in options ? options.use_slider : false);
+
+
 
     var visualOptions;
 
