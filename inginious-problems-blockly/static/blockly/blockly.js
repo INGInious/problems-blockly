@@ -131,21 +131,21 @@ BlocklyTask.prototype.injectWorkspace = function(blocklyDiv, options, workspaceB
 BlocklyTask.prototype.addButtonsListeners = function() {
     var self = this;
     this.playButton.on('click.simple', function() {
-        $("#slider").prop( "disabled", true );
+        self.sliderButton.prop( "disabled", true );
         self.playButton.hide();
         self.stopButton.show();
         self.executeCode();
     });
 
     this.stopButton.on('click.simple', function() {
-        $("#slider").prop( "disabled", false );
+        self.sliderButton.prop( "disabled", false );
         self.stopButton.hide();
         self.resetButton.show();
         self.stopCodeExecution();
     });
 
     this.resetButton.on('click.simple', function() {
-        $("#slider").prop( "disabled", false );
+        self.sliderButton.prop( "disabled", false );
         self.resetButton.hide();
         self.playButton.show();
         if (typeof Maze !== "undefined" && typeof Maze.reset !== "undefined") {
