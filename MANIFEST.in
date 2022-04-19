@@ -2,3 +2,4 @@ include LICENSE
 include README.md
 recursive-include inginious-problems-blockly/static *
 recursive-include inginious-problems-blockly/templates *
+recursive-include inginious-problems-blockly/i18n *

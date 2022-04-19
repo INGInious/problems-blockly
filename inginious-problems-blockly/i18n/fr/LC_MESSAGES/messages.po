@@ -1,0 +1,230 @@
+# French translations for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-09-06 11:46+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.1\n"
+
+#: inginious-problems-blockly/templates/box_blockly.html:15
+msgid "Execution error"
+msgstr "Erreur d'exécution"
+
+#: inginious-problems-blockly/templates/box_blockly.html:21
+msgid "Run code"
+msgstr "Exécuter le code"
+
+#: inginious-problems-blockly/templates/box_blockly.html:22
+msgid "Stop"
+msgstr "Stop"
+
+#: inginious-problems-blockly/templates/box_blockly.html:23
+msgid "Restart"
+msgstr "Redémarrer"
+
+#: inginious-problems-blockly/templates/box_blockly.html:25
+msgid "Blocks"
+msgstr "Blocs"
+
+#: inginious-problems-blockly/templates/box_blockly.html:26
+msgid "Split"
+msgstr "Séparer"
+
+#: inginious-problems-blockly/templates/box_blockly.html:29
+msgid "Toggle full screen"
+msgstr "Basculer en plein écran"
+
+#: inginious-problems-blockly/templates/box_blockly.html:32
+msgid "You have"
+msgstr "Vous avez"
+
+#: inginious-problems-blockly/templates/box_blockly.html:32
+msgid "block(s) left."
+msgstr "bloc(s) restant(s)"
+
+#: inginious-problems-blockly/templates/box_blockly.html:85
+#: inginious-problems-blockly/templates/editbox_blockly.html:216
+msgid "Close"
+msgstr "Fermer"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:5
+msgid "Context"
+msgstr "Contexte"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:14
+msgid "Workspace Options"
+msgstr "Options de l'espace de travail"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:20
+msgid "Visual problem"
+msgstr "Problème visuel"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:28
+msgid "Can collapse blocks"
+msgstr "Peut réduire les blocs"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:36
+msgid "Can comment blocks"
+msgstr "Peut commenter les blocs"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:44
+msgid "Can disable blocks"
+msgstr "Peut désactiver les blocs"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:52
+msgid "Max number of blocks"
+msgstr "Nombre maximum de blocs"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:58
+msgid "Timeout between animations"
+msgstr "Interval entre les animations"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:64
+msgid "Use trashcan"
+msgstr "Utiliser la poubelle"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:72
+msgid "Use horizontal layout"
+msgstr "Utiliser le layout horizontal"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:80
+msgid "Toolbox position"
+msgstr "Position de la boîte à outils"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:86
+msgid "Media path"
+msgstr "Chemin des médias"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:92
+msgid "Use blockly css"
+msgstr "Utiliser le css blockly"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:101
+msgid "Display grid"
+msgstr "Afficher la grille"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:110
+msgid "Zoom"
+msgstr "Zoom"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:118
+msgid "Right-to-left"
+msgstr "de droit à gauche"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:126
+msgid "Read only"
+msgstr "Mode lecture uniquement"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:134
+msgid "1-based index"
+msgstr "index base i"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:142
+msgid "Scrollbars"
+msgstr "Barres de défilement"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:150
+msgid "Sounds"
+msgstr "Sons"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:162
+msgid "Files (Interpreter, Visual execution)"
+msgstr "Fichiers (Interpréteur, Exécution visuelle)"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:168
+msgid "Additional blocks files"
+msgstr "Fichiers de blocs additionnels"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:176
+msgid "Edit toolbox XML"
+msgstr "Editer la boîte à outils XML"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:181
+msgid "Toolbox"
+msgstr "boîte à outils"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:189
+msgid "Edit workspace XML"
+msgstr "Editer l'espace de travail XML"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:194
+msgid "Workspace"
+msgstr "Espace de travail"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:202
+msgid "Edit toolbox/workspace graphically"
+msgstr "Editer la boîte à outils/l'espace de travail graphiquement"
+
+#: inginious-problems-blockly/templates/editbox_blockly.html:210
+msgid "Blockly Factory"
+msgstr "Usine Blockly"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:6
+msgid "Position"
+msgstr "Position"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:9
+msgid "left"
+msgstr "gauche"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:10
+msgid "right"
+msgstr "droite"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:17
+msgid "Spacing"
+msgstr "Espace"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:23
+msgid "Length"
+msgstr "Taille"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:29
+msgid "Colour"
+msgstr "Couleur"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:35
+msgid "Snap"
+msgstr "Casser"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:45
+msgid "Controls"
+msgstr "Contrôles"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:53
+msgid "Wheel"
+msgstr "Roue"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:61
+msgid "Start scale"
+msgstr "Commencer la mise à l'échelle"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:67
+msgid "Max scale"
+msgstr "Mise à l'échelle maximum"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:73
+msgid "Min scale"
+msgstr "Mise à l'échelle minimum"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:79
+msgid "Scale speed"
+msgstr "Mise à l'échelle de la vitesse"
+
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:87
+#: inginious-problems-blockly/templates/editbox_blockly_templates.html:95
+msgid "File name"
+msgstr "Nom du fichier"
+
