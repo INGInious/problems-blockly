@@ -20,7 +20,7 @@ msgstr ""
 
 #: inginious-problems-blockly/templates/box_blockly.html:15
 msgid "Execution error"
-msgstr ""
+msgstr "Erreur d'exécution"
 
 #: inginious-problems-blockly/templates/box_blockly.html:21
 msgid "Run code"
