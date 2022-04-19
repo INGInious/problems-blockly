@@ -19,8 +19,8 @@ msgstr ""
 "Generated-By: Babel 2.9.1\n"
 
 #: inginious-problems-blockly/templates/box_blockly.html:15
-msgid "Erreur d'exécution"
-msgstr "Execution error"
+msgid "Execution error"
+msgstr "Erreur d'exécution"
 
 #: inginious-problems-blockly/templates/box_blockly.html:21
 msgid "Run code"
