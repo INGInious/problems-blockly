@@ -4,6 +4,7 @@
 # more information about the licensing of this file.
 
 import os
+import os.path
 import gettext
 from flask import send_from_directory
 import json
@@ -149,10 +150,12 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         blockly_dico["name"] = self.get_name()
         blockly_dico["options"] = json.dumps(self._options)
         translation = _translations.get(language, gettext.NullTranslations())
+        static_msg_exist = os.path.exists(PATH_TO_PLUGIN+"/static/blockly/msg/js/"+language+".js")
         return str(
             template_helper.render("box_blockly.html", template_folder=PATH_TO_TEMPLATES,
                                    blockly_dico=(blockly_dico),
-                                   gettext=translation.gettext
+                                   gettext=translation.gettext,
+                                   static_msg_exist=static_msg_exist
                                    ))
 
 

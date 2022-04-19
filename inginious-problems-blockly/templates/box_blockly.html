@@ -102,8 +102,11 @@
 <script src="{{get_homepath()}}/plugins/blockly/static/blockly/javascript_compressed.js" type="text/javascript" charset="utf-8"></script>
 
 <!-- Blockly Language Translation -->
-<script src="{{get_homepath()}}/plugins/blockly/static/blockly/msg/js/{{user_manager.session_language()}}.js" type="text/javascript" charset="utf-8"></script>
-
+{% if static_msg_exist %}
+    <script src="{{get_homepath()}}/plugins/blockly/static/blockly/msg/js/{{user_manager.session_language()}}.js" type="text/javascript" charset="utf-8"></script>
+{% else %}
+    <script src="{{get_homepath()}}/plugins/blockly/static/blockly/msg/js/en.js" type="text/javascript" charset="utf-8"></script>
+{% endif %}
 {% if blockly_dico["filenames"] is not none %}
     {% for filename in blockly_dico["filenames"]%}
         <script src="{{get_homepath()}}/course/{{blockly_dico['courseid']}}/{{blockly_dico['taskid']}}/{{filename}}" type="text/javascript" charset="utf-8"></script>
