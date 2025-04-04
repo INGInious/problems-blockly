@@ -506,10 +506,11 @@ BlocklyTaskInterpreter.alert = function(message) {
     });
 };
 
-var blocklyTask = new BlocklyTask(options, blocklyDico["toolbox"], blocklyDico["workspace"]);
+var blocklyTask;
 
 /* We need to disable the full screen if the elements are not loaded (because
 some elements might be missing on the full screen. )*/
 $(document).ready(function() {
     $('#buttonFullscreen').attr("disabled", false);
+    blocklyTask = new BlocklyTask(options, blocklyDico["toolbox"], blocklyDico["workspace"]);
 });
