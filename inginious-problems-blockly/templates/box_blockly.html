@@ -96,27 +96,27 @@
 ></textarea>
 
 <!-- Blockly official JavaScript -->
-<script src="{{get_homepath()}}/plugins/blockly/static/blockly/blockly_compressed.js" type="text/javascript" charset="utf-8"></script>
-<script src="{{get_homepath()}}/plugins/blockly/static/blockly/blocks_compressed.js" type="text/javascript" charset="utf-8"></script>
-<script src="{{get_homepath()}}/plugins/blockly/static/blockly/python_compressed.js" type="text/javascript" charset="utf-8"></script>
-<script src="{{get_homepath()}}/plugins/blockly/static/blockly/javascript_compressed.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('blocklystaticpage', path='/blockly/blockly_compressed.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('blocklystaticpage', path='/blockly/blocks_compressed.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('blocklystaticpage', path='/blockly/python_compressed.js') }}" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('blocklystaticpage', path='/blockly/javascript_compressed.js') }}" type="text/javascript" charset="utf-8"></script>
 
 <!-- Blockly Language Translation -->
 {% if static_msg_exist %}
-    <script src="{{get_homepath()}}/plugins/blockly/static/blockly/msg/js/{{user_manager.session_language()}}.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ url_for('blocklystaticpage', path='/blockly/msg/js/' + session.language + '.js') }}" type="text/javascript" charset="utf-8"></script>
 {% else %}
-    <script src="{{get_homepath()}}/plugins/blockly/static/blockly/msg/js/en.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ url_for('blocklystaticpage', path='/blockly/msg/js/en.js') }}" type="text/javascript" charset="utf-8"></script>
 {% endif %}
 {% if blockly_dico["filenames"] is not none %}
     {% for filename in blockly_dico["filenames"]%}
-        <script src="{{get_homepath()}}/course/{{blockly_dico['courseid']}}/{{blockly_dico['taskid']}}/{{filename}}" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ url_for('taskpagestaticdownload', courseid=blockly_dico['courseid'], taskid=blockly_dico['taskid'], path=filename) }}" type="text/javascript" charset="utf-8"></script>
     {% endfor %}
 {% endif %}
 <!-- Local JavaScript -->
-<script src="{{get_homepath()}}/plugins/blockly/static/blockly/blockly.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('blocklystaticpage', path='/blockly/blockly.js') }}" type="text/javascript" charset="utf-8"></script>
 
 <!-- JS Interpreter to run code locally -->
-<script src="{{get_homepath()}}/plugins/blockly/static/JS-Interpreter/acorn_interpreter.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ url_for('blocklystaticpage', path='/JS-Interpreter/acorn_interpreter.js') }}" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     if("use_slider" in options){
         $("#slider").show();

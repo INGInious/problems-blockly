@@ -6,7 +6,7 @@
 import os
 import os.path
 import gettext
-from flask import send_from_directory
+from flask import send_from_directory, render_template
 import json
 
 from inginious.common.tasks_problems import Problem
@@ -118,14 +118,16 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         super(DisplayableBlocklyProblem, self).__init__(problemid, content, translations, taskfs)
 
     @classmethod
-    def show_editbox(self, template_helper, key, language):
+    def show_editbox(self, key, language):
         translation = _translations.get(language, gettext.NullTranslations())
-        return template_helper.render("editbox_blockly.html", gettext=translation.gettext, template_folder=PATH_TO_TEMPLATES, key=key)
+        return render_template("blockly-problem/editbox_blockly.html", gettext=translation.gettext, key=key)
 
     @classmethod
-    def show_editbox_templates(cls, template_helper, key, language):
+    def show_editbox_templates(cls, key, language):
         translation = _translations.get(language, gettext.NullTranslations())
-        return template_helper.render("editbox_blockly_templates.html", gettext=translation.gettext, template_folder=PATH_TO_TEMPLATES, key=key)
+        static_msg_exist = os.path.exists(PATH_TO_PLUGIN + "/static/blockly/msg/js/" + language + ".js")
+        return render_template("blockly-problem/editbox_blockly_templates.html",
+                               gettext=translation.gettext, key=key, static_msg_exist=static_msg_exist)
 
     @classmethod
     def get_type_name(self, language):
@@ -135,7 +137,7 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         """ Adapt the input from web.py for the inginious.backend """
         return input_data
 
-    def show_input(self, template_helper, language, seed):
+    def show_input(self, language, seed):
         """ Show BlocklyBox """
         blockly_dico = dict()
         coursedir, taskid = os.path.split(self._task_fs.prefix.rstrip("/"))
@@ -151,21 +153,20 @@ class DisplayableBlocklyProblem(BlocklyProblem, DisplayableProblem):
         blockly_dico["options"] = json.dumps(self._options)
         translation = _translations.get(language, gettext.NullTranslations())
         static_msg_exist = os.path.exists(PATH_TO_PLUGIN+"/static/blockly/msg/js/"+language+".js")
-        return str(
-            template_helper.render("box_blockly.html", template_folder=PATH_TO_TEMPLATES,
-                                   blockly_dico=(blockly_dico),
-                                   gettext=translation.gettext,
-                                   static_msg_exist=static_msg_exist
-                                   ))
+        return render_template("blockly-problem/box_blockly.html",
+                               blockly_dico=(blockly_dico),
+                               gettext=translation.gettext,
+                               static_msg_exist=static_msg_exist
+                               )
 
 
-def init(plugin_manager, course_factory, client, plugin_config):
+def init(plugin_manager, client, plugin_config):
     global _translations
     plugin_manager.add_page('/plugins/blockly/static/<path:path>', StaticMockPage.as_view('blocklystaticpage'))
     plugin_manager.add_hook("css", lambda: "/plugins/blockly/static/css/blockly.css")
     plugin_manager.add_hook("javascript_header", lambda: "/plugins/blockly/static/studio_blockly.js")
     plugin_manager.add_hook("javascript_header", lambda: "/plugins/blockly/static/task_blockly.js")
-    course_factory.get_task_factory().add_problem_type(DisplayableBlocklyProblem)
+    plugin_manager.add_template_prefix("blockly-problem", PATH_TO_TEMPLATES)
 
     # Init gettext
     languages = ["en", "fr"]

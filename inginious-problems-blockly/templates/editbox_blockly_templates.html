@@ -102,23 +102,27 @@
         <div id="blocklyFactory"></div>
 
         <!-- Blockly official JavaScript -->
-        <script src="{{get_homepath()}}/plugins/blockly/static/blockly/blockly_compressed.js" type="text/javascript" charset="utf-8"></script>
-        <script src="{{get_homepath()}}/plugins/blockly/static/blockly/blocks_compressed.js" type="text/javascript" charset="utf-8"></script>
-        <script src="{{get_homepath()}}/plugins/blockly/static/blockly/javascript_compressed.js" type="text/javascript" charset="utf-8"></script>
-        <script src="{{get_homepath()}}/plugins/blockly/static/blockly/python_compressed.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blockly/blockly_compressed.js') }}" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blockly/blocks_compressed.js') }}" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blockly/python_compressed.js') }}" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blockly/javascript_compressed.js') }}" type="text/javascript" charset="utf-8"></script>
 
-        <!-- Blockly French Translation -->
-        <script src="{{get_homepath()}}/plugins/blockly/static/blockly/msg/js/fr.js" type="text/javascript" charset="utf-8"></script>
+        <!-- Blockly Language Translation -->
+        {% if static_msg_exist %}
+            <script src="{{ url_for('blocklystaticpage', path='/blockly/msg/js/' + session.language + '.js') }}" type="text/javascript" charset="utf-8"></script>
+        {% else %}
+            <script src="{{ url_for('blocklystaticpage', path='/blockly/msg/js/en.js') }}" type="text/javascript" charset="utf-8"></script>
+        {% endif %}
 
         <!-- Blockly Factory js -->
-        <script src="{{get_homepath()}}/plugins/blockly/static/blocklyfactory/bootstrapelement.js" charset="utf-8"></script>
-        <script src="{{get_homepath()}}/plugins/blockly/static/blocklyfactory/factorycontroller.js" charset="utf-8"></script>
-        <script src="{{get_homepath()}}/plugins/blockly/static/blocklyfactory/factory.js" charset="utf-8"></script>
-        <script src="{{get_homepath()}}/plugins/blockly/static/blocklyfactory/factoryview.js" charset="utf-8"></script>
-        <script src="{{get_homepath()}}/plugins/blockly/static/blocklyfactory/preview.js" charset="utf-8"></script>
-        <script src="{{get_homepath()}}/plugins/blockly/static/blocklyfactory/toolboxfactory.js" charset="utf-8"></script>
-        <script src="{{get_homepath()}}/plugins/blockly/static/blocklyfactory/toolbox.js" charset="utf-8"></script>
-        <script src="{{get_homepath()}}/plugins/blockly/static/blocklyfactory/workspacefactory.js" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blocklyfactory/bootstrapelement.js') }}" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blocklyfactory/factorycontroller.js') }}" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blocklyfactory/factory.js') }}" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blocklyfactory/factoryview.js') }}" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blocklyfactory/preview.js') }}" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blocklyfactory/toolboxfactory.js') }}" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blocklyfactory/toolbox.js') }}" charset="utf-8"></script>
+        <script src="{{ url_for('blocklystaticpage', path='/blocklyfactory/workspacefactory.js') }}" charset="utf-8"></script>
 
     </div>
 
